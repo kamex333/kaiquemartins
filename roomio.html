@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Roomio — Estudo de caso · Kaique Martins</title>
-<meta name="description" content="Estudo de caso do Roomio: app para reservar hospedagem para hoje, com preço total à vista e check-in sem fila.">
+<meta name="description" content="Estudo de caso do Roomio: um app pra reservar hospedagem pra hoje. Da pesquisa ao teste de usabilidade com 4 pessoas, e o que mudou depois.">
 <meta property="og:title" content="Roomio — Estudo de caso · Kaique Martins">
-<meta property="og:description" content="Estudo de caso do Roomio: app para reservar hospedagem para hoje, com preço total à vista e check-in sem fila.">
+<meta property="og:description" content="Estudo de caso do Roomio: um app pra reservar hospedagem pra hoje. Da pesquisa ao teste de usabilidade com 4 pessoas, e o que mudou depois.">
 <meta property="og:type" content="website">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +31,11 @@ section[aria-label="Resumo"]>div>div:first-child{border-right:0!important;border
 section[style*="margin-top: 128px; background: #0F3D32"]{margin-top:80px!important;padding:80px 20px!important}
 img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!important}
 [style*="border-radius: 28px; padding: 40px"]{padding:28px 24px!important}
+section[style*="margin-top: 128px; background: #E6EFEB"]{margin-top:80px!important;padding:80px 20px!important}
+.ba{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+.ba img{border-radius:18px!important}
+.tt{font-size:14px!important}
+.tt td,.tt th{padding:12px 10px!important}
 }
 </style>
 </head>
@@ -48,19 +53,20 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <div style="display: flex; flex-wrap: wrap; gap: 8px; font-family: 'Geist Mono', monospace; font-size: 12px">
 <span style="padding: 6px 12px; border-radius: 999px; border: 1px solid #3F6E61">Case 01</span>
 <span style="padding: 6px 12px; border-radius: 999px; border: 1px solid #3F6E61">App mobile · iOS</span>
+<span style="padding: 6px 12px; border-radius: 999px; border: 1px solid #3F6E61">Teste de usabilidade</span>
 <span style="padding: 6px 12px; border-radius: 999px; border: 1px solid #3F6E61">2026</span>
 </div>
 <h1 style="margin: 0; font-size: clamp(56px, 8vw, 112px); font-weight: 600; letter-spacing: -0.05em; line-height: 0.92">Roomio</h1>
-<p style="margin: 0; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.25; letter-spacing: -0.02em; max-width: 520px">Do desembarque ao quarto, <span style="color: #F2A541">sem planejamento e sem surpresas.</span></p>
-<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #CFE6DC; max-width: 520px">Um app de reserva de hotéis para quem precisa de hospedagem para hoje, em poucos minutos, muitas vezes já no destino.</p>
+<p style="margin: 0; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.25; letter-spacing: -0.02em; max-width: 520px">Um app pra quem precisa de um lugar pra dormir <span style="color: #F2A541">hoje</span>, e rápido.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #CFE6DC; max-width: 520px">Já chegou numa cidade sem reserva? O Roomio nasceu pra esse momento: achar um quarto confiável em poucos minutos, ver o preço total desde o começo e chegar só pegando a chave. Aqui eu conto o caminho todo, da pesquisa ao teste com usuários.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px">
 <a href="https://claude.ai/artifact/QM7TncHc8zCCnpwK12ubtT" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; background: #F2A541; color: #3D2606; text-decoration: none; font-weight: 600">Navegar no protótipo <span aria-hidden="true">↗</span></a>
-<a href="https://www.figma.com/design/gba6MuHVNUkIxi2kQLlMQL/Roomio-%E2%80%94-App-de-reserva?node-id=2-6&amp;t=he4iNl3MoRn2srmU-1" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; border: 1px solid #6E9C8E; color: #FAF8F4; text-decoration: none; font-weight: 600">Ver no Figma <span aria-hidden="true">↗</span></a>
+<a href="https://www.figma.com/design/gba6MuHVNUkIxi2kQLlMQL/Roomio-%E2%80%94-App-de-reserva?node-id=237-2" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; border: 1px solid #6E9C8E; color: #FAF8F4; text-decoration: none; font-weight: 600">Ver no Figma <span aria-hidden="true">↗</span></a>
 </div>
 </div>
 <div style="display: flex; gap: 16px; justify-content: center; align-items: flex-end">
-<img src="assets/roomio-home.png" alt="Home do Roomio" style="width: 44%; max-width: 250px; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 30px 30px 0 0">
-<img src="assets/roomio-detalhes.png" alt="Detalhes do hotel no Roomio" style="width: 48%; max-width: 280px; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 32px 32px 0 0">
+<img src="assets/v3/home.jpg" alt="Home do Roomio com a busca Onde, Quando e Quem" style="width: 44%; max-width: 250px; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 30px 30px 0 0">
+<img src="assets/v3/detalhe-topo.jpg" alt="Detalhes do hotel no Roomio" style="width: 48%; max-width: 280px; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 32px 32px 0 0">
 </div>
 </div>
 </section>
@@ -69,13 +75,13 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0; background: #FFFFFF; border: 1px solid #E4E2DC; border-top: 0; border-radius: 0 0 28px 28px; overflow: hidden">
 <div style="padding: 40px; display: flex; flex-direction: column; gap: 14px; border-right: 1px solid #E4E2DC">
 <span style="font-family: 'Geist Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #B4421E">O problema</span>
-<p style="margin: 0; font-size: 24px; line-height: 1.3; letter-spacing: -0.02em; font-weight: 500">Quem precisa de hospedagem para hoje não tem dificuldade de achar hotel. Tem dificuldade de confiar nele.</p>
-<p style="margin: 0; color: #4A4944; line-height: 1.55">80% comparam em mais de uma plataforma, o preço total aparece só no fim e, ao chegar, ainda tem ficha e fila na recepção.</p>
+<p style="margin: 0; font-size: 24px; line-height: 1.3; letter-spacing: -0.02em; font-weight: 500">Na pesquisa, ficou claro que achar hotel não é o difícil. O difícil é confiar no que o app mostra.</p>
+<p style="margin: 0; color: #4A4944; line-height: 1.55">80% das pessoas comparam em mais de uma plataforma, o preço total só aparece no fim e, quando você chega, ainda tem ficha e fila na recepção.</p>
 </div>
 <div style="padding: 40px; display: flex; flex-direction: column; gap: 14px">
 <span style="font-family: 'Geist Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #22684F">A solução</span>
-<p style="margin: 0; font-size: 24px; line-height: 1.3; letter-spacing: -0.02em; font-weight: 500">Um app pensado para reservar em 4 toques, que mostra o preço total desde o primeiro card e manda seus dados ao hotel antes de você chegar.</p>
-<p style="margin: 0; color: #4A4944; line-height: 1.55">Na chegada, o hóspede só retira a chave. Sem ficha, sem fila.</p>
+<p style="margin: 0; font-size: 24px; line-height: 1.3; letter-spacing: -0.02em; font-weight: 500">Um app pra reservar em 4 toques, com o preço total desde o primeiro card e os seus dados indo pro hotel antes de você chegar.</p>
+<p style="margin: 0; color: #4A4944; line-height: 1.55">Na chegada, é só pegar a chave. Depois, testei com 4 pessoas e refiz 19 telas com o que aprendi.</p>
 </div>
 </div>
 </section>
@@ -84,9 +90,9 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: end">
 <div style="display: flex; flex-direction: column; gap: 12px">
 <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">O projeto e o meu papel</span>
-<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Da pesquisa em grupo ao produto, conduzido por mim</h2>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Começou em grupo, e eu segui sozinho</h2>
 </div>
-<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">O Roomio começou como um case de UX em grupo, com Laila Begulo, Marylene Guedes e Sarah Rothschild. Da síntese da pesquisa ao protótipo final, conduzi o projeto sozinho.</p>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">O Roomio nasceu num case de UX em grupo, com a Laila Begulo, a Marylene Guedes e a Sarah Rothschild. Da síntese da pesquisa em diante (produto, telas, protótipo e teste de usabilidade), eu toquei sozinho.</p>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px">
 <div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
@@ -104,10 +110,11 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <li style="display: flex; gap: 12px"><span aria-hidden="true" style="color: #F2A541; font-weight: 700">✓</span><span>Jornada do hóspede em 9 etapas e arquitetura das telas</span></li>
 <li style="display: flex; gap: 12px"><span aria-hidden="true" style="color: #F2A541; font-weight: 700">✓</span><span>Direção visual: paleta, tipografia e ícones</span></li>
 <li style="display: flex; gap: 12px"><span aria-hidden="true" style="color: #F2A541; font-weight: 700">✓</span><span>UI, design system e protótipo navegável no Figma</span></li>
+<li style="display: flex; gap: 12px"><span aria-hidden="true" style="color: #F2A541; font-weight: 700">✓</span><span>Teste de usabilidade com 4 pessoas e a nova versão das telas</span></li>
 </ul>
 <div style="margin-top: auto; border-top: 1px solid #3F6E61; padding-top: 18px; display: flex; flex-direction: column; gap: 6px">
 <span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9CC9B8">Como usei IA</span>
-<p style="margin: 0; line-height: 1.5">IA generativa como ferramenta de produção, para acelerar a criação das telas. O problema, os critérios e cada decisão de interface foram meus.</p>
+<p style="margin: 0; line-height: 1.5">Usei IA pra acelerar a produção das telas e organizar as transcrições do teste. Quem definiu o problema, os critérios e cada decisão de interface fui eu.</p>
 </div>
 </div>
 </div>
@@ -119,8 +126,8 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Entre o desembarque e o táxi</h2>
 </div>
 <div style="display: flex; flex-direction: column; gap: 16px; font-size: 19px; line-height: 1.6; color: #2E2D2A">
-<p style="margin: 0">Imagine chegar numa cidade sem reserva: cansaço, pressa e o celular na mão. É nesse momento que alguém abre um app de hospedagem e precisa decidir rápido, sem conseguir ver o hotel antes.</p>
-<p style="margin: 0">A pergunta de partida foi: <strong style="font-weight: 600">o que faz essa decisão ser tão difícil, e o que acontece depois que ela é tomada?</strong> Para responder, combinamos dados quantitativos com entrevistas em profundidade.</p>
+<p style="margin: 0">Imagina chegar numa cidade sem reserva: cansado, com pressa e com o celular na mão. É nessa hora que a pessoa abre um app de hospedagem e precisa decidir rápido, sem conseguir ver o lugar antes.</p>
+<p style="margin: 0">A gente partiu de uma pergunta: <strong style="font-weight: 600">por que essa decisão é tão difícil, e o que acontece depois que ela é tomada?</strong> Pra responder, juntamos um questionário com entrevistas em profundidade.</p>
 </div>
 </section>
 
@@ -130,12 +137,12 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Capítulo 2 · Pesquisa quantitativa</span>
 <h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">70 viajantes, um padrão claro</h2>
 </div>
-<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">Criei um questionário online para medir o tamanho do problema: com que frequência as pessoas viajam, se já reservaram em cima da hora e como escolhem onde ficar.</p>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">Criei um questionário online pra entender o tamanho do problema: quantas vezes as pessoas viajam, se já reservaram em cima da hora e como escolhem onde ficar.</p>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
-<div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 80px; line-height: 0.9; color: #0F3D32">53%</span><span style="font-weight: 600">já reservaram hospedagem no mesmo dia</span><span style="font-size: 15px; color: #4A4944; line-height: 1.5">A reserva de última hora não é exceção: é comportamento de metade do público.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 80px; line-height: 0.9; color: #0F3D32">53%</span><span style="font-weight: 600">já reservaram hospedagem no mesmo dia</span><span style="font-size: 15px; color: #4A4944; line-height: 1.5">Reservar em cima da hora é bem mais comum do que eu imaginava: metade das pessoas já fez.</span></div>
 <div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 80px; line-height: 0.9; color: #0F3D32">74%</span><span style="font-weight: 600">viajam mais de 5 vezes por ano</span><span style="font-size: 15px; color: #4A4944; line-height: 1.5">Viajantes frequentes, que valorizam dados salvos e um processo que se repete sem atrito.</span></div>
-<div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 80px; line-height: 0.9; color: #B4421E">80%</span><span style="font-weight: 600">comparam em mais de uma plataforma</span><span style="font-size: 15px; color: #4A4944; line-height: 1.5">O sinal mais forte: não falta opção, falta confiança no que a plataforma mostra.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 80px; line-height: 0.9; color: #B4421E">80%</span><span style="font-weight: 600">comparam em mais de uma plataforma</span><span style="font-size: 15px; color: #4A4944; line-height: 1.5">Esse foi o número que mais me chamou atenção: opção tem de sobra, o que falta é confiar no que aparece na tela.</span></div>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
 <span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">Perfis encontrados</span>
@@ -149,9 +156,9 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: end">
 <div style="display: flex; flex-direction: column; gap: 12px">
 <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Capítulo 3 · Entrevistas em profundidade</span>
-<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Os números diziam o quê. As pessoas disseram por quê.</h2>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Três conversas com quem vive isso</h2>
 </div>
-<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">Três entrevistas semiestruturadas com viajantes de perfis diferentes. Conduzi a do Cleber do começo ao fim.</p>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">Fizemos três entrevistas com viajantes bem diferentes entre si. A do Cleber eu conduzi do roteiro à análise, e foi uma das partes que eu mais curti no projeto todo.</p>
 </div>
 <blockquote style="margin: 0; background: #E6EFEB; border-radius: 28px; padding: clamp(32px, 5vw, 56px); display: flex; flex-direction: column; gap: 20px">
 <span aria-hidden="true" style="font-size: 96px; line-height: 0.6; font-weight: 600; color: #22684F; height: 40px">“</span>
@@ -196,7 +203,7 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
 <div style="display: flex; flex-direction: column; gap: 16px">
 <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #9CC9B8">Capítulo 4 · Síntese</span>
-<h2 style="margin: 0; font-size: clamp(40px, 6vw, 80px); font-weight: 500; letter-spacing: -0.045em; line-height: 0.98; max-width: 1000px">O problema não é achar hotel. É <span style="color: #F2A541">confiar</span> nele.</h2>
+<h2 style="margin: 0; font-size: clamp(40px, 6vw, 80px); font-weight: 500; letter-spacing: -0.045em; line-height: 0.98; max-width: 1000px">Tudo apontava pra mesma coisa: <span style="color: #F2A541">falta de confiança.</span></h2>
 </div>
 <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px">
 <li style="border-top: 1px solid #3F6E61; padding-top: 18px; display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #F2A541">Padrão 01</span><span style="font-weight: 600; font-size: 19px">Desconfiança</span><span style="color: #CFE6DC; line-height: 1.5; font-size: 15px">O que a plataforma mostra nem sempre bate com a realidade.</span></li>
@@ -206,7 +213,7 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 </ol>
 <div style="border: 1px solid #3F6E61; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 12px">
 <span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9CC9B8">O desafio de design</span>
-<p style="margin: 0; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.3; letter-spacing: -0.02em">Como ajudar quem tem pressa a reservar uma hospedagem confiável em poucos minutos e chegar só pegando a chave?</p>
+<p style="margin: 0; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.3; letter-spacing: -0.02em">Como a gente ajuda quem tem pressa a reservar um lugar confiável em poucos minutos, e chegar só pegando a chave?</p>
 </div>
 </div>
 </section>
@@ -215,9 +222,9 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: end">
 <div style="display: flex; flex-direction: column; gap: 12px">
 <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Capítulo 5 · Da pesquisa para a tela</span>
-<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Quatro princípios, cada um com origem</h2>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Quatro regras que eu segui em todas as telas</h2>
 </div>
-<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">Transformei cada dor em uma regra de design. Toda tela do Roomio foi checada contra esses quatro princípios.</p>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">Peguei cada dor que apareceu na pesquisa e transformei numa regra. Antes de fechar qualquer tela, eu conferia se ela respeitava as quatro.</p>
 </div>
 <ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px">
 <li style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">Vem de: Cleber</span><span style="font-size: 20px; font-weight: 600; letter-spacing: -0.02em">Preço total sempre</span><span style="color: #4A4944; line-height: 1.5">Total com taxas em todo card e na barra de reserva. A diária vira texto de apoio, nunca o contrário.</span></li>
@@ -234,18 +241,18 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #9CC9B8">Capítulo 6 · A solução</span>
 <h2 style="margin: 0; font-size: clamp(36px, 5vw, 64px); font-weight: 500; letter-spacing: -0.04em; line-height: 1">Reservar em <span style="color: #F2A541">4 toques</span></h2>
 </div>
-<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #CFE6DC">Desenhei a jornada completa em 9 etapas, da busca à retirada da chave. Para quem já tem conta, o fluxo principal cabe em 4 toques.</p>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #CFE6DC">Desenhei a jornada inteira em 9 etapas, da busca até pegar a chave. Pra quem já tem conta, reservar cabe em 4 toques. As telas abaixo já são a versão depois do teste de usabilidade.</p>
 </div>
 <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px">
-<li style="display: flex; flex-direction: column; gap: 16px"><img src="assets/roomio-home.png" alt="Home com o atalho Hoje, perto de mim" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; border-radius: 26px; border: 1px solid #2C5A4E"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9CC9B8">01</span><span style="font-weight: 600; font-size: 18px">“Hoje, perto de mim”</span><span style="color: #CFE6DC; line-height: 1.5; font-size: 15px">Atalho com local, data e 1 noite prontos. Pula o formulário.</span></li>
-<li style="display: flex; flex-direction: column; gap: 16px"><img src="assets/roomio-resultados.png" alt="Resultados com selos de destaque" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; border-radius: 26px; border: 1px solid #2C5A4E"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9CC9B8">02</span><span style="font-weight: 600; font-size: 18px">Escolher o hotel</span><span style="color: #CFE6DC; line-height: 1.5; font-size: 15px">Selos como “Melhor para agora” explicam a escolha em uma linha.</span></li>
-<li style="display: flex; flex-direction: column; gap: 16px"><img src="assets/roomio-detalhes.png" alt="Detalhes do hotel com quarto recomendado" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; border-radius: 26px; border: 1px solid #2C5A4E"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9CC9B8">03</span><span style="font-weight: 600; font-size: 18px">Reservar</span><span style="color: #CFE6DC; line-height: 1.5; font-size: 15px">Quarto recomendado já selecionado; cancelamento e limpeza visíveis.</span></li>
-<li style="display: flex; flex-direction: column; gap: 16px"><img src="assets/roomio-pagamento.png" alt="Sheet de confirmar e pagar" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; border-radius: 26px; border: 1px solid #2C5A4E"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9CC9B8">04</span><span style="font-weight: 600; font-size: 18px">Pagar e pronto</span><span style="color: #CFE6DC; line-height: 1.5; font-size: 15px">“Cobrança agora. Nada a pagar no hotel.” Dados já enviados.</span></li>
+<li style="display: flex; flex-direction: column; gap: 16px"><img src="assets/v3/home.jpg" alt="Home com a busca Onde, Quando e Quem já preenchida" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 26px; border: 1px solid #2C5A4E"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9CC9B8">01</span><span style="font-weight: 600; font-size: 18px">Buscar</span><span style="color: #CFE6DC; line-height: 1.5; font-size: 15px">A busca já vem pronta: perto de mim, hoje, 1 noite. É só tocar na lupa.</span></li>
+<li style="display: flex; flex-direction: column; gap: 16px"><img src="assets/v3/resultados.jpg" alt="Resultados com o preço total e selos de destaque" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 26px; border: 1px solid #2C5A4E"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9CC9B8">02</span><span style="font-weight: 600; font-size: 18px">Escolher o lugar</span><span style="color: #CFE6DC; line-height: 1.5; font-size: 15px">Preço total em todo card e selos como “Melhor para agora” pra ajudar a decidir.</span></li>
+<li style="display: flex; flex-direction: column; gap: 16px"><img src="assets/v3/detalhe.jpg" alt="Detalhe com o quarto recomendado para o grupo" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 26px; border: 1px solid #2C5A4E"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9CC9B8">03</span><span style="font-weight: 600; font-size: 18px">Reservar</span><span style="color: #CFE6DC; line-height: 1.5; font-size: 15px">O quarto que cabe o seu grupo já vem escolhido. Se quiser outro, é só trocar.</span></li>
+<li style="display: flex; flex-direction: column; gap: 16px"><img src="assets/v3/revise.jpg" alt="Revise sua reserva antes de pagar" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 26px; border: 1px solid #2C5A4E"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #9CC9B8">04</span><span style="font-weight: 600; font-size: 18px">Conferir e pagar</span><span style="color: #CFE6DC; line-height: 1.5; font-size: 15px">Tudo numa tela só antes de pagar. Nada é cobrado no hotel.</span></li>
 </ol>
 <div style="background: #164A3D; border-radius: 28px; padding: 32px 36px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center">
 <div style="display: flex; flex-direction: column; gap: 6px; max-width: 620px">
 <span style="font-size: clamp(24px, 2.6vw, 32px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.15">Experimente a reserva você mesmo</span>
-<span style="color: #CFE6DC; line-height: 1.5">Protótipo navegável com o fluxo completo: busca, filtros, detalhes, pagamento, confirmação e estadia. Funciona no computador e no celular.</span>
+<span style="color: #CFE6DC; line-height: 1.5">O protótipo tem o fluxo inteiro, já na versão nova: busca, quarto, pagamento, código da chave, estender e cancelar. Abre no computador e no celular.</span>
 </div>
 <a href="https://claude.ai/artifact/QM7TncHc8zCCnpwK12ubtT" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 28px; border-radius: 999px; background: #F2A541; color: #3D2606; text-decoration: none; font-weight: 600; font-size: 17px">Abrir protótipo <span aria-hidden="true">↗</span></a>
 </div>
@@ -257,19 +264,19 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <div style="display: flex; flex-direction: column; gap: 32px">
 <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Decisões que vieram da pesquisa</span>
 <div style="display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Filtros na ordem do que pesa em cima da hora</h3><p style="margin: 0; color: #4A4944; line-height: 1.6">Entrada hoje e cancelamento grátis primeiro (Adriana), depois self check-in e recepção 24h (Kézia), preço total e acessibilidade confirmada pelo hotel.</p></div>
-<div style="display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Tudo o que pesa, antes de pagar</h3><p style="margin: 0; color: #4A4944; line-height: 1.6">Avaliações por tema, com limpeza em destaque, e cancelamento em linha do tempo: grátis até 14h, depois a 1ª diária. Nenhuma surpresa depois.</p></div>
-<div style="display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Sem dark patterns</h3><p style="margin: 0; color: #4A4944; line-height: 1.6">Cleber chamou as plataformas atuais de “poluídas”. Por isso, nada de contador falso de escassez, desconto escondendo o total ou opção pré-marcada.</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Tudo o que pesa, antes de pagar</h3><p style="margin: 0; color: #4A4944; line-height: 1.6">Avaliações por tema, com limpeza em destaque, e o cancelamento numa linha do tempo: grátis por 1 hora depois de reservar, depois só a 1ª diária é cobrada.</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Sem dark patterns</h3><p style="margin: 0; color: #4A4944; line-height: 1.6">O Cleber chamou os apps que ele usa de “poluídos”. Então aqui não tem contador falso de “só resta 1 quarto”, desconto escondendo o total nem opção já marcada pra você.</p></div>
 </div>
 </section>
 
 <section style="max-width: 1200px; margin: 0 auto; padding: 112px 32px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: center">
 <div style="display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Cadastro no momento certo, uma vez só</h3><p style="margin: 0; color: #4A4944; line-height: 1.6">Buscar e ver resultados não pede login, porque para o Cleber criar conta é atrito. Os dados só são pedidos ao reservar e servem também para o check-in expresso.</p></div>
-<div style="display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">A experiência continua até a chave</h3><p style="margin: 0; color: #4A4944; line-height: 1.6">“Gostou? Fique mais uma noite” estende a estadia sem novo check-in, para quem reserva 1 noite para testar, como a Kézia. Suporte, rota e cancelamento ficam num só lugar.</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Cadastro no momento certo, uma vez só</h3><p style="margin: 0; color: #4A4944; line-height: 1.6">Dá pra buscar e ver tudo sem login, porque pro Cleber criar conta logo de cara é atrito. Os dados só aparecem na hora de reservar, e já servem pro check-in expresso.</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">A experiência continua até a chave</h3><p style="margin: 0; color: #4A4944; line-height: 1.6">“Gostou? Fique mais uma noite” estende a estadia sem novo check-in, pensando em quem reserva 1 noite pra testar, como a Kézia. Código da chave, rota, suporte e cancelamento ficam no mesmo lugar.</p></div>
 </div>
 <div style="display: flex; gap: 20px; justify-content: center">
-<img src="assets/roomio-confirmada.png" alt="Tela de reserva confirmada" style="width: 46%; max-width: 250px; aspect-ratio: 322 / 700; object-fit: cover; border-radius: 32px; border: 1px solid #E4E2DC; box-shadow: 0 20px 56px rgba(15,61,50,0.14)">
-<img src="assets/roomio-reservas.png" alt="Minhas reservas com opção de estender a estadia" style="width: 46%; max-width: 250px; aspect-ratio: 322 / 700; object-fit: cover; border-radius: 32px; border: 1px solid #E4E2DC; box-shadow: 0 20px 56px rgba(15,61,50,0.14)">
+<img src="assets/v3/confirmada.jpg" alt="Tela de reserva confirmada com o código da chave" style="width: 46%; max-width: 250px; aspect-ratio: 322 / 700; object-position: top; object-fit: cover; border-radius: 32px; border: 1px solid #E4E2DC; box-shadow: 0 20px 56px rgba(15,61,50,0.14)">
+<img src="assets/v3/estadia.jpg" alt="Sua estadia, com o código da chave e a opção de ficar mais uma noite" style="width: 46%; max-width: 250px; aspect-ratio: 322 / 700; object-position: top; object-fit: cover; border-radius: 32px; border: 1px solid #E4E2DC; box-shadow: 0 20px 56px rgba(15,61,50,0.14)">
 </div>
 </section>
 
@@ -277,9 +284,9 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: end">
 <div style="display: flex; flex-direction: column; gap: 12px">
 <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Capítulo 7 · Design system</span>
-<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Feito para crescer sem perder consistência</h2>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Um design system pra eu não me perder (e pra quem for desenvolver)</h2>
 </div>
-<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">Cores e espaços vêm de variáveis semânticas, e cada componente tem estados de clique, foco, desabilitado e seleção. Acessibilidade foi requisito, não ajuste final.</p>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">Cores e espaços saem de variáveis, e cada componente tem os estados de toque, foco, desabilitado e selecionado. Contraste e área de toque eu conferi desde o começo. Depois do teste, entrou uma regra simples: o que você toca é pílula, o que guarda conteúdo é retângulo arredondado.</p>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px">
 <div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 64px; line-height: 1; color: #0F3D32">38</span><span style="font-size: 15px; color: #4A4944">componentes com estados</span></div>
@@ -290,9 +297,172 @@ img[src$="roomio-filtros.png"]{max-width:260px!important;border-radius:28px!impo
 <img src="assets/roomio-design-system.png" alt="Componente Cartão de filtro em todos os estados" style="width: 100%; aspect-ratio: 1664 / 310; object-fit: contain; border-radius: 20px; background: #FFFFFF; border: 1px solid #E4E2DC">
 </section>
 
+
+<section style="margin-top: 128px; background: #E6EFEB; padding: 112px 32px">
+<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: end">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Capítulo 8 · Teste de usabilidade</span>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Coloquei o Roomio na mão de 4 pessoas</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px; font-size: 19px; line-height: 1.6; color: #2E2D2A">
+<p style="margin: 0">Eu queria saber se alguém consegue fazer o caminho inteiro sozinho, no celular: buscar, escolher o quarto, pagar, entender como pegar a chave, estender e cancelar.</p>
+<p style="margin: 0">Foi um teste moderado e remoto, pelo Zoom. Cada pessoa abriu o protótipo no próprio celular, compartilhou a tela e foi pensando em voz alta. Antes, rodei um piloto pra acertar o roteiro.</p>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 64px; line-height: 1; color: #0F3D32">4</span><span style="font-size: 15px; color: #4A4944">participantes, com perfis diferentes</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 64px; line-height: 1; color: #0F3D32">7</span><span style="font-size: 15px; color: #4A4944">tarefas, na ordem de uma reserva de verdade</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 64px; line-height: 1; color: #0F3D32">100%</span><span style="font-size: 15px; color: #4A4944">das tarefas concluídas, 3 delas com uma ajudinha</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 64px; line-height: 1; color: #0F3D32">7</span><span style="font-size: 15px; color: #4A4944">problemas que viraram mudança de tela</span></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">P1</span><span style="font-weight: 600">Trabalha com turismo</span><span style="font-size: 15px; color: #4A4944; line-height: 1.5">Reserva toda hora, no Booking ou direto no site do hotel. Odeia filtro de preço que ignora as taxas.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">P2</span><span style="font-weight: 600">Explora tudo antes de decidir</span><span style="font-size: 15px; color: #4A4944; line-height: 1.5">Usa Booking, Airbnb e Decolar. Acha os apps com “muita informação, tudo no mesmo lugar”.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">P3</span><span style="font-weight: 600">Compara nota, preço e metrô</span><span style="font-size: 15px; color: #4A4944; line-height: 1.5">Booking e Airbnb. O maior medo é o anfitrião cancelar em cima da hora.</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">P4</span><span style="font-weight: 600">Hóspede e anfitrião no Airbnb</span><span style="font-size: 15px; color: #4A4944; line-height: 1.5">Confia bastante na segurança do Airbnb e quase não tem reclamação.</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Como foi cada tarefa</h3>
+<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px">
+<table class="tt" style="width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.45; text-align: left; min-width: 560px">
+<thead><tr style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963; text-transform: uppercase; letter-spacing: 0.04em"><th style="padding: 16px 20px; font-weight: 500">Tarefa</th><th style="padding: 16px 20px; font-weight: 500">Concluíram</th><th style="padding: 16px 20px; font-weight: 500">O que aconteceu</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #E4E2DC"><td style="padding: 16px 20px; font-weight: 600">1. Achar hospedagem pra hoje</td><td style="padding: 16px 20px; white-space: nowrap; color: #22684F; font-weight: 600">4 de 4</td><td style="padding: 16px 20px; color: #4A4944">Uma pessoa somou filtros até a lista zerar</td></tr>
+<tr style="border-top: 1px solid #E4E2DC"><td style="padding: 16px 20px; font-weight: 600">2. Opção pra 3 pessoas</td><td style="padding: 16px 20px; white-space: nowrap; color: #22684F; font-weight: 600">3 de 3 · 1 com ajuda</td><td style="padding: 16px 20px; color: #4A4944">O quarto recomendado era pra 2; os de 3 ficavam escondidos</td></tr>
+<tr style="border-top: 1px solid #E4E2DC"><td style="padding: 16px 20px; font-weight: 600">3. Preço total e prazo de cancelamento</td><td style="padding: 16px 20px; white-space: nowrap; color: #22684F; font-weight: 600">4 de 4 · 1 com ajuda</td><td style="padding: 16px 20px; color: #4A4944">Preço fácil de achar; o “até hoje, 14h” confundiu 3 de 4</td></tr>
+<tr style="border-top: 1px solid #E4E2DC"><td style="padding: 16px 20px; font-weight: 600">4. Entrar ou criar conta</td><td style="padding: 16px 20px; white-space: nowrap; color: #22684F; font-weight: 600">4 de 4</td><td style="padding: 16px 20px; color: #4A4944">Nenhum problema</td></tr>
+<tr style="border-top: 1px solid #E4E2DC"><td style="padding: 16px 20px; font-weight: 600">5. Pagar e resolver a recusa</td><td style="padding: 16px 20px; white-space: nowrap; color: #22684F; font-weight: 600">3 de 3</td><td style="padding: 16px 20px; color: #4A4944">Todo mundo trocou pra Pix ou outro cartão sozinho</td></tr>
+<tr style="border-top: 1px solid #E4E2DC"><td style="padding: 16px 20px; font-weight: 600">6. Saber como pegar a chave</td><td style="padding: 16px 20px; white-space: nowrap; color: #22684F; font-weight: 600">4 de 4 · 1 com ajuda</td><td style="padding: 16px 20px; color: #4A4944">3 de 4 chamaram o código de “código da reserva”</td></tr>
+<tr style="border-top: 1px solid #E4E2DC"><td style="padding: 16px 20px; font-weight: 600">7a. Estender a estadia</td><td style="padding: 16px 20px; white-space: nowrap; color: #22684F; font-weight: 600">4 de 4</td><td style="padding: 16px 20px; color: #4A4944">Nenhum problema, em 26 segundos na média</td></tr>
+<tr style="border-top: 1px solid #E4E2DC"><td style="padding: 16px 20px; font-weight: 600">7b. Cancelar a reserva</td><td style="padding: 16px 20px; white-space: nowrap; color: #22684F; font-weight: 600">4 de 4</td><td style="padding: 16px 20px; color: #4A4944">4 de 4 caíram em “Reserva confirmada!” depois de cancelar</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin: 0; font-size: 14px; color: #6B6963; line-height: 1.5">Nas tarefas 2 e 5, conto só quem passou pelo cenário (busca pra 3 pessoas e pagamento recusado).</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">O que deu certo</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<blockquote style="margin: 0; background: #0F3D32; color: #FAF8F4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px"><p style="margin: 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em">“Eu gostei que ele mostra o valor total já cheio.”</p><footer style="font-size: 14px; color: #9CC9B8">P1 · preço total com taxas, desde a lista</footer></blockquote>
+<blockquote style="margin: 0; background: #0F3D32; color: #FAF8F4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px"><p style="margin: 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em">“Acho que os outros aplicativos não têm isso.”</p><footer style="font-size: 14px; color: #9CC9B8">P3 · estender a estadia, que todos fizeram em menos de 1 minuto</footer></blockquote>
+<blockquote style="margin: 0; background: #0F3D32; color: #FAF8F4; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px"><p style="margin: 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.02em">“Achei o layout limpo, clean, não é poluído.”</p><footer style="font-size: 14px; color: #9CC9B8">P3 · e o laranja dos destaques “funcionou muito bem”, segundo a P4</footer></blockquote>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+<h3 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Onde as pessoas travaram</h3>
+<p style="margin: 0; color: #4A4944; line-height: 1.6; max-width: 760px">Todo mundo chegou ao fim, mas os problemas apareceram nas bordas do fluxo. Separei os que aconteceram com mais de uma pessoa ou travaram uma tarefa, do mais grave pro menos grave.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px">
+<li style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center"><span style="padding: 4px 10px; border-radius: 999px; background: #FBE9E4; color: #8F3320; font-size: 12px; font-weight: 600">Alta</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">4 de 4 participantes</span></div><span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35">Depois de cancelar, o app voltava pra “Reserva confirmada!”</span><span style="color: #4A4944; line-height: 1.5; font-size: 15px">“Estou em dúvida se cancelou.” (P2)</span></li>
+<li style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center"><span style="padding: 4px 10px; border-radius: 999px; background: #FBE9E4; color: #8F3320; font-size: 12px; font-weight: 600">Alta</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">3 de 3 participantes</span></div><span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35">Quarto pra 2 recomendado numa busca pra 3, e os outros quartos escondidos</span><span style="color: #4A4944; line-height: 1.5; font-size: 15px">“Jamais pensaria que tem outros tipos de quarto.” (P2)</span></li>
+<li style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center"><span style="padding: 4px 10px; border-radius: 999px; background: #FBE9E4; color: #8F3320; font-size: 12px; font-weight: 600">Alta</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">2 de 3 participantes</span></div><span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35">Número de pessoas diferente entre filtros, lista e pagamento</span><span style="color: #4A4944; line-height: 1.5; font-size: 15px">O pagamento mostrava “1 hóspede” pra um grupo de 3</span></li>
+<li style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center"><span style="padding: 4px 10px; border-radius: 999px; background: #FDF1DD; color: #7A4D0B; font-size: 12px; font-weight: 600">Média</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">3 de 4 participantes</span></div><span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35">Prazo “cancelamento grátis até hoje, 14h” numa reserva feita à noite</span><span style="color: #4A4944; line-height: 1.5; font-size: 15px">“Que no caso, não é hoje, né?” (P1)</span></li>
+<li style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center"><span style="padding: 4px 10px; border-radius: 999px; background: #FDF1DD; color: #7A4D0B; font-size: 12px; font-weight: 600">Média</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">3 de 4 participantes</span></div><span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35">Código pra pegar a chave confundido com o número da reserva</span><span style="color: #4A4944; line-height: 1.5; font-size: 15px">“Tentando entender se era algum outro.” (P3)</span></li>
+<li style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center"><span style="padding: 4px 10px; border-radius: 999px; background: #FDF1DD; color: #7A4D0B; font-size: 12px; font-weight: 600">Média</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">2 de 4 participantes</span></div><span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35">Duas barras de busca na home, sem diferença clara</span><span style="color: #4A4944; line-height: 1.5; font-size: 15px">“Qual a diferença desse aqui pro ‘Para onde você vai’?” (P2)</span></li>
+<li style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center"><span style="padding: 4px 10px; border-radius: 999px; background: #FDF1DD; color: #7A4D0B; font-size: 12px; font-weight: 600">Média</span><span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">2 de 4 participantes</span></div><span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.35">Filtros somados até zerar a lista, sem saída clara</span><span style="color: #4A4944; line-height: 1.5; font-size: 15px">Só a tela vazia chamou atenção, o botão passou batido</span></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 128px 32px 0; display: flex; flex-direction: column; gap: 48px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: end">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Capítulo 9 · O que mudou depois do teste</span>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">Cada problema virou uma tela nova</h2>
+</div>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2E2D2A">Pra cada problema, explorei algumas alternativas, testei no protótipo e fechei uma versão. No total, foram 19 telas novas. Essas são as cinco mudanças que mais pesaram.</p>
+</div>
+<article style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: center; border-top: 1px solid #D9D6CE; padding-top: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Mudança 01</span>
+<h3 style="margin: 0; font-size: clamp(24px, 2.6vw, 32px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15">Cancelar agora tem começo, meio e fim</h3>
+<p style="margin: 0; color: #4A4944; line-height: 1.6"><strong style="font-weight: 600; color: #111111">O que aconteceu:</strong> as 4 pessoas cancelaram e caíram de novo em “Reserva confirmada!”. Duas ficaram sem saber se tinha dado certo.</p>
+<p style="margin: 0; color: #4A4944; line-height: 1.6"><strong style="font-weight: 600; color: #111111">O que eu mudei:</strong> um fluxo só pra isso. Primeiro você vê quanto volta e até que horas é grátis; depois aparece “Reserva cancelada”, com o caminho do reembolso e a chave desativada. Em Reservas, ela fica marcada como cancelada.</p>
+</div>
+<div class="ba" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="assets/antes/confirmada.png" alt="Antes: depois de cancelar, a tela continuava dizendo reserva confirmada" loading="lazy" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px; border: 1px solid #E4E2DC; filter: saturate(0.85)"><figcaption style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">Antes</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="assets/v3/cancelada.jpg" alt="Depois: tela de reserva cancelada com o reembolso" loading="lazy" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px; border: 2px solid #0F3D32"><figcaption style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #22684F; font-weight: 500">Depois</figcaption></figure>
+</div>
+</article>
+<article style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: center; border-top: 1px solid #D9D6CE; padding-top: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Mudança 02</span>
+<h3 style="margin: 0; font-size: clamp(24px, 2.6vw, 32px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15">O quarto certo pro tamanho do grupo</h3>
+<p style="margin: 0; color: #4A4944; line-height: 1.6"><strong style="font-weight: 600; color: #111111">O que aconteceu:</strong> numa busca pra 3 pessoas, o app recomendava um quarto pra 2, e os outros quartos ficavam escondidos.</p>
+<p style="margin: 0; color: #4A4944; line-height: 1.6"><strong style="font-weight: 600; color: #111111">O que eu mudei:</strong> agora só aparecem quartos que cabem o grupo. O recomendado vem num card compacto, e o botão “Trocar quarto” abre os outros num carrossel, com fotos e a diferença de preço.</p>
+</div>
+<div class="ba" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="assets/antes/detalhes.png" alt="Antes: detalhe com quarto recomendado para 2" loading="lazy" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px; border: 1px solid #E4E2DC; filter: saturate(0.85)"><figcaption style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">Antes</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="assets/v3/trocar-quarto.jpg" alt="Depois: carrossel para trocar de quarto" loading="lazy" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px; border: 2px solid #0F3D32"><figcaption style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #22684F; font-weight: 500">Depois</figcaption></figure>
+</div>
+</article>
+<article style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: center; border-top: 1px solid #D9D6CE; padding-top: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Mudança 03</span>
+<h3 style="margin: 0; font-size: clamp(24px, 2.6vw, 32px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15">“Código da chave”, com o que fazer com ele</h3>
+<p style="margin: 0; color: #4A4944; line-height: 1.6"><strong style="font-weight: 600; color: #111111">O que aconteceu:</strong> 3 de 4 pessoas leram o código como número da reserva e não sabiam onde usar.</p>
+<p style="margin: 0; color: #4A4944; line-height: 1.6"><strong style="font-weight: 600; color: #111111">O que eu mudei:</strong> um nome só, “Código da chave”, sempre junto da ação (“Mostre na recepção e pegue a chave”) e de 3 passos. O número da reserva foi pra outro lugar, só pra falar com o suporte.</p>
+</div>
+<div class="ba" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="assets/antes/confirmada.png" alt="Antes: confirmação com código da reserva" loading="lazy" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px; border: 1px solid #E4E2DC; filter: saturate(0.85)"><figcaption style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">Antes</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="assets/v3/confirmada.jpg" alt="Depois: confirmação com o card do código da chave" loading="lazy" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px; border: 2px solid #0F3D32"><figcaption style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #22684F; font-weight: 500">Depois</figcaption></figure>
+</div>
+</article>
+<article style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: center; border-top: 1px solid #D9D6CE; padding-top: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Mudança 04</span>
+<h3 style="margin: 0; font-size: clamp(24px, 2.6vw, 32px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15">Uma busca só, já preenchida</h3>
+<p style="margin: 0; color: #4A4944; line-height: 1.6"><strong style="font-weight: 600; color: #111111">O que aconteceu:</strong> 2 de 4 pessoas não entenderam a diferença entre “Hoje, perto de mim” e “Para onde você vai?”.</p>
+<p style="margin: 0; color: #4A4944; line-height: 1.6"><strong style="font-weight: 600; color: #111111">O que eu mudei:</strong> uma barra única, Onde · Quando · Quem, que já vem com perto de mim, hoje e 1 noite. Cada parte abre só o próprio cartão, e é ali que você diz quantas pessoas vão.</p>
+</div>
+<div class="ba" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="assets/antes/home.png" alt="Antes: home com duas buscas" loading="lazy" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px; border: 1px solid #E4E2DC; filter: saturate(0.85)"><figcaption style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">Antes</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="assets/v3/home.jpg" alt="Depois: home com a busca única" loading="lazy" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px; border: 2px solid #0F3D32"><figcaption style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #22684F; font-weight: 500">Depois</figcaption></figure>
+</div>
+</article>
+<article style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: center; border-top: 1px solid #D9D6CE; padding-top: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Mudança 05</span>
+<h3 style="margin: 0; font-size: clamp(24px, 2.6vw, 32px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15">Uma pausa pra conferir antes de pagar</h3>
+<p style="margin: 0; color: #4A4944; line-height: 1.6"><strong style="font-weight: 600; color: #111111">O que aconteceu:</strong> com cartão salvo, a reserva era paga sem revisão (“Eu coloquei sem querer.”, P4), e diária e taxas apareciam separadas depois de “taxas inclusas”.</p>
+<p style="margin: 0; color: #4A4944; line-height: 1.6"><strong style="font-weight: 600; color: #111111">O que eu mudei:</strong> entrou a tela “Revise sua reserva”: datas, pessoas, hóspede e pagamento num lugar só, com “O total já inclui” e o botão dizendo o valor e a forma de pagamento.</p>
+</div>
+<div class="ba" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="assets/antes/pagamento.png" alt="Antes: pagamento direto" loading="lazy" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px; border: 1px solid #E4E2DC; filter: saturate(0.85)"><figcaption style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963">Antes</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="assets/v3/revise.jpg" alt="Depois: tela Revise sua reserva" loading="lazy" style="width: 100%; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px; border: 2px solid #0F3D32"><figcaption style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #22684F; font-weight: 500">Depois</figcaption></figure>
+</div>
+</article>
+<div style="background: #FFFFFF; border: 1px solid #E4E2DC; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+<span style="font-family: 'Geist Mono', monospace; font-size: 12px; color: #6B6963; text-transform: uppercase; letter-spacing: 0.04em">E mais três ajustes</span>
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; line-height: 1.55; color: #2E2D2A">
+<li style="display: flex; flex-direction: column; gap: 4px"><strong style="font-weight: 600">Prazo de cancelamento claro</strong><span style="color: #4A4944">Saiu o “até hoje, 14h”. Agora é grátis por 1 hora depois de reservar, com o horário exato (“até 19:04”) em todas as telas.</span></li>
+<li style="display: flex; flex-direction: column; gap: 4px"><strong style="font-weight: 600">Busca zerada com saída</strong><span style="color: #4A4944">Se os filtros zeram a lista, a tela mostra quantos lugares sobram sem cada um deles.</span></li>
+<li style="display: flex; flex-direction: column; gap: 4px"><strong style="font-weight: 600">Como chegar sem susto</strong><span style="color: #4A4944">Antes de sair do app, você escolhe entre Google Maps, Waze ou corrida, e o código da chave continua salvo.</span></li>
+</ul>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="https://claude.ai/artifact/QM7TncHc8zCCnpwK12ubtT" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; background: #0F3D32; color: #FAF8F4; text-decoration: none; font-weight: 600">Testar a versão nova <span aria-hidden="true">↗</span></a>
+<a href="https://www.figma.com/design/gba6MuHVNUkIxi2kQLlMQL/Roomio-%E2%80%94-App-de-reserva?node-id=237-2" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; border: 1px solid #111111; text-decoration: none; font-weight: 600">Ver as telas no Figma <span aria-hidden="true">↗</span></a>
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 128px 32px 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #22684F">Pra fechar</span>
+<h2 style="margin: 0; font-size: clamp(32px, 4vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05">O que eu levo desse projeto</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px; font-size: 19px; line-height: 1.6; color: #2E2D2A">
+<p style="margin: 0">Ver alguém travar numa tela que eu achava óbvia dói um pouquinho, confesso. Mas foi o momento em que eu mais aprendi. O cancelamento, por exemplo, funcionava “tecnicamente”, e mesmo assim as quatro pessoas ficaram em dúvida.</p>
+<p style="margin: 0">O Roomio me fez entender na prática por que pesquisa, teste e iteração valem tanto. Eu me viciei nesse projeto, deu trabalho, e hoje eu sei explicar cada pedacinho dele.</p>
+<p style="margin: 0"><strong style="font-weight: 600">Próximos passos:</strong> uma segunda rodada com pessoas novas, focada em cancelar, escolher quarto pra grupo e achar o código da chave, e o questionário SUS no fim de cada sessão pra comparar as versões com um número.</p>
+<p style="margin: 0; font-size: 15px; color: #6B6963">Com 4 participantes, o teste mostra onde estão os problemas, mas não mede o quanto eles acontecem. Por isso a próxima rodada importa.</p>
+</div>
+</section>
+
 <footer style="max-width: 1200px; margin: 0 auto; padding: 128px 32px 64px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end">
 <div style="display: flex; flex-direction: column; gap: 8px">
-<span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #6B6963">Gostou do case?</span>
+<span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #6B6963">Curtiu o case? Vou adorar saber o que você achou</span>
 <a href="mailto:kaiquechavess@hotmail.com" style="text-decoration: none; font-size: clamp(36px, 5vw, 64px); font-weight: 500; letter-spacing: -0.04em; line-height: 1">Vamos conversar <span aria-hidden="true">→</span></a>
 </div>
 <a href="index.html" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 999px; border: 1px solid #111111; text-decoration: none; font-weight: 600">Voltar ao início</a>
