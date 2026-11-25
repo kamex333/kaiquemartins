@@ -1,0 +1,51 @@
+/* Efeitos das páginas de case. Cada efeito liga com uma classe cm-<nome> no <html>. */
+:root{--cm-color:#FF5A36;--cm-ink:#111111;--cm-mark:#FFD23F}
+
+/* Entrada do título */
+html.cm-hero .cm-word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.1em;margin-bottom:-.1em}
+html.cm-hero .cm-word>span{display:inline-block;transform:translateY(105%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+html.cm-hero.cm-hero-in .cm-word>span{transform:none}
+html.cm-hero .cm-after{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+html.cm-hero.cm-hero-in .cm-after{opacity:1;transform:none}
+
+/* Revelar ao rolar */
+html.cm-reveal .cm-r{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+html.cm-reveal .cm-r.cm-in{opacity:1;transform:none}
+
+/* Chegada com a cor do case */
+.cm-arrive-panel{position:fixed;inset:0;z-index:90;display:flex;align-items:flex-end;padding:32px;box-sizing:border-box;background:var(--cm-color);color:var(--cm-ink);font:700 clamp(40px,8vw,112px)/.95 'Geist',system-ui,sans-serif;letter-spacing:-.04em;pointer-events:none;transform:translateY(-100%)}
+.cm-arrive-panel.show{transform:none}
+.cm-arrive-panel.go{transform:translateY(-100%);transition:transform .7s cubic-bezier(.7,0,.2,1) .25s}
+
+/* Barra de leitura */
+.cm-progress-bar{position:fixed;left:0;top:0;height:5px;width:100%;z-index:85;background:var(--cm-color);transform-origin:0 50%;transform:scaleX(0);display:none;border-bottom:1px solid #111111}
+html.cm-progress .cm-progress-bar{display:block}
+
+/* Capítulo atual */
+.cm-chapter-pill{position:fixed;left:16px;bottom:16px;z-index:65;max-width:min(440px,calc(100vw - 360px));padding:10px 16px;border-radius:999px;background:#111111;color:#F7F6F2;font:500 13px/1.3 'Geist Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(12px);transition:opacity .3s ease,transform .3s ease;pointer-events:none}
+html.cm-chapter .cm-chapter-pill.on{opacity:1;transform:none}
+@media (max-width:900px){.cm-chapter-pill{display:none}}
+
+/* Gráficos que crescem */
+html.cm-bars .cm-bar{transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+
+/* Marca-texto */
+html.cm-mark .cm-m{background-image:linear-gradient(var(--cm-mark),var(--cm-mark));background-repeat:no-repeat;background-position:0 88%;background-size:0% 38%;transition:background-size 1s cubic-bezier(.2,.8,.2,1);box-decoration-break:clone;-webkit-box-decoration-break:clone}
+html.cm-mark .cm-m.cm-in{background-size:100% 38%}
+
+/* Telas com profundidade */
+html.cm-parallax .cm-px{will-change:transform}
+
+/* Imagens ampliáveis */
+html.cm-zoom .cm-z{cursor:zoom-in}
+.cm-lb{position:fixed;inset:0;z-index:95;background:rgba(17,17,17,.88);display:grid;place-items:center;padding:24px;box-sizing:border-box;opacity:0;pointer-events:none;transition:opacity .25s ease;cursor:zoom-out}
+.cm-lb.on{opacity:1;pointer-events:auto}
+.cm-lb img{max-width:min(1200px,100%);max-height:calc(100vh - 96px);object-fit:contain;border-radius:16px;background:#FFFFFF;transform:scale(.94);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.cm-lb.on img{transform:none}
+.cm-lb button{position:absolute;top:16px;right:16px;min-height:44px;padding:0 18px;border-radius:999px;border:2px solid #111111;background:#FFD23F;color:#111111;font:600 15px 'Geist',sans-serif;cursor:pointer}
+
+@media (prefers-reduced-motion:reduce){
+html[class*="cm-"] *{transition:none!important;animation:none!important}
+html.cm-hero .cm-word>span,html.cm-hero .cm-after,html.cm-reveal .cm-r{transform:none!important;opacity:1!important}
+.cm-arrive-panel{display:none}
+}

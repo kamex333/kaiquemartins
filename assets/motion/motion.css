@@ -1,0 +1,50 @@
+/* Efeitos de movimento do portfólio. Cada efeito liga com uma classe no <html>. */
+
+/* 1. Entrada do título */
+html.fx-hero .fx-word{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
+html.fx-hero .fx-word>span{display:inline-block;transform:translateY(105%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+html.fx-hero.fx-hero-in .fx-word>span{transform:none}
+html.fx-hero .fx-hero-after{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+html.fx-hero.fx-hero-in .fx-hero-after{opacity:1;transform:none}
+
+/* 2. Revelar ao rolar */
+html.fx-reveal .fx-r{opacity:0;transform:translateY(48px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+html.fx-reveal .fx-r.fx-in{opacity:1;transform:none}
+
+/* 3. Cards que reagem */
+html.fx-cards a.fx-card{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease;transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));will-change:transform}
+html.fx-cards a.fx-card img{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+html.fx-cards a.fx-card:hover img:nth-child(1){transform:translate(-10px,4px) rotate(-4deg)!important}
+html.fx-cards a.fx-card:hover img:nth-child(2){transform:translateY(-18px)!important}
+html.fx-cards a.fx-card:hover img:nth-child(3){transform:translate(10px,4px) rotate(4deg)!important}
+html.fx-cards a.fx-card[href="ecommerce.html"]:hover img:nth-child(2){transform:translate(10px,-4px) rotate(3deg)!important}
+html.fx-cards a.fx-card[href="ecommerce.html"]:hover{box-shadow:12px 12px 0 #111111!important}
+html.fx-cards a.fx-card:active{transform:translate(3px,3px)}
+
+/* 4. Cursor "Ver case" */
+.fx-cursor{position:fixed;left:0;top:0;z-index:60;pointer-events:none;width:112px;height:112px;margin:-56px 0 0 -56px;border-radius:50%;background:#FFD23F;border:2px solid #111111;color:#111111;display:grid;place-items:center;font:600 15px/1 'Geist',system-ui,sans-serif;transform:translate(var(--x,-200px),var(--y,-200px)) scale(0);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.fx-cursor.on{transform:translate(var(--x),var(--y)) scale(1)}
+html.fx-cursor-on a.fx-card{cursor:none}
+
+/* 7. Faixa em movimento */
+.fx-band{display:none;overflow:hidden;border-top:2px solid #111111;border-bottom:2px solid #111111;background:#111111;color:#F7F6F2;margin:0 0 72px}
+html.fx-marquee .fx-band{display:block}
+.fx-band>div{display:flex;width:max-content;animation:fx-mq 28s linear infinite}
+.fx-band span{font:500 clamp(22px,3vw,34px)/1 'Instrument Serif',Georgia,serif;font-style:italic;padding:18px 0;white-space:nowrap}
+.fx-band b{font:500 14px/1 'Geist Mono',monospace;color:#FFD23F;padding:0 28px;align-self:center}
+@keyframes fx-mq{to{transform:translateX(-50%)}}
+.fx-band:hover>div{animation-play-state:paused}
+
+/* 6. Transição entre páginas */
+.fx-wipe{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end;padding:32px;box-sizing:border-box;transform:translateY(100%);pointer-events:none;font:700 clamp(40px,8vw,112px)/.95 'Geist',system-ui,sans-serif;letter-spacing:-.04em;border-top:2px solid #111111}
+.fx-wipe.up{transform:none;transition:transform .55s cubic-bezier(.7,0,.2,1)}
+.fx-wipe.out{transform:translateY(-100%);transition:transform .55s cubic-bezier(.7,0,.2,1)}
+
+/* 8. Botões magnéticos */
+html.fx-magnet .fx-mag{transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+
+@media (prefers-reduced-motion:reduce){
+html[class*="fx-"] *{transition:none!important;animation:none!important}
+html.fx-hero .fx-word>span,html.fx-hero .fx-hero-after,html.fx-reveal .fx-r{transform:none!important;opacity:1!important}
+}
+@media (hover:none){.fx-cursor{display:none}}
