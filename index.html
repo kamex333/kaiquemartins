@@ -59,7 +59,24 @@ ol>li[style*="padding: 32px"]{padding:24px!important}
 .pc-roomio .pc-btn{background:#FAF8F4;color:#0F3D32}
 .pc-ecom .pc-btn{background:#FFD23F;border:2px solid #111111;color:#111111}
 @media (max-width:860px){.pc-grid{grid-template-columns:1fr}}
-@media (max-width:640px){.pc-vis{height:210px;padding:24px 16px 0}.pc-body{padding:22px 20px 24px}.pc-stat b{font-size:34px}}
+@media (max-width:640px){
+.pc-grid{gap:20px}
+.pc{border-radius:20px}
+.pc-vis{height:150px;gap:8px;padding:18px 16px 0}
+.pc-vis img{border-radius:12px 12px 0 0}
+.pc-roomio .pc-vis img:nth-child(odd){transform:translateY(12px)}
+.pc-ecom .pc-vis img:nth-child(2){transform:translateY(12px)}
+.pc-body{gap:10px;padding:18px 18px 20px}
+.pc-tags{gap:5px;font-size:10px}
+.pc-tags span{padding:4px 8px}
+.pc-tags span:nth-child(n+4){display:none}
+.pc h3{font-size:24px}
+.pc p{font-size:15px;line-height:1.45}
+.pc-foot{flex-wrap:nowrap;gap:12px;align-items:center;padding-top:4px}
+.pc-stat b{font-size:28px}
+.pc-stat span{font-size:12px;max-width:150px}
+.pc-btn{min-height:40px;padding:0 14px;font-size:14px;white-space:nowrap;flex:none}
+}
 </style>
 </head>
 <body>
