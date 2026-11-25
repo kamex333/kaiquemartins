@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-commerce de acessórios · Estudo de caso</title>
+<meta name="description" content="Estudo de caso de um e-commerce de acessórios para celular: GA4, Clarity, teste de uso e heurísticas para achar onde a compra travava, e dois handoffs, um para o carrinho e outro para a recuperação de senha.">
+<meta property="og:title" content="E-commerce de acessórios · Estudo de caso · Kaique Martins">
+<meta property="og:description" content="Projeto freelance real: onde um e-commerce de acessórios perdia vendas no celular e o que eu propus.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: neo-brutalista. Fundo creme, bordas pretas de 2px, sombra dura deslocada, blocos em tomate, cobalto e amarelo. Coluna de 1200px, capítulos numerados em etiqueta preta. Tema único claro, como o resto do site. */
+:root{
+ --bg:#FFF6E5; --paper:#FFFFFF; --ink:#111111; --text:#2A2A2A; --muted:#4D4A44; --soft:#6E6A62;
+ --tomato:#FF5A36; --cobalt:#2F5BFF; --sun:#FFD23F; --sky:#DCE4FF; --mint:#C9F2DC; --lilac:#E9DFFF; --peach:#FFE0D3;
+ --blue:#007AFF;
+ --b:2px solid var(--ink); --sh:6px 6px 0 var(--ink); --sh-s:4px 4px 0 var(--ink);
+ --f-sans:"Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+ --f-mono:"Geist Mono", ui-monospace, Menlo, monospace;
+ color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+img{max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono)}
+.box{background:var(--paper);border:var(--b);border-radius:22px;box-shadow:var(--sh)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.02em;border:var(--b);border-radius:999px;padding:5px 12px;background:var(--paper)}
+
+/* topo */
+.topbar{margin-top:24px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding:10px 20px;border:var(--b);border-radius:14px;background:var(--paper);box-shadow:var(--sh-s)}
+.topbar a{text-decoration:none;font-weight:600;padding:8px 0;display:inline-flex;gap:8px;align-items:center}
+.brand{gap:0!important;font-weight:800!important;font-size:18px;letter-spacing:-.01em}
+.brand span{color:var(--tomato)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:28px;padding-top:40px}
+.hero-main{background:var(--tomato);padding:48px;display:flex;flex-direction:column;gap:24px}
+.hero-main .kicker{font-family:var(--f-mono);font-size:13px;font-weight:700}
+.hero h1{font-size:clamp(40px,5.2vw,72px);font-weight:800;letter-spacing:-.045em;line-height:.96}
+.hero-main .lede{font-size:clamp(20px,2.2vw,26px);line-height:1.35;font-weight:500;max-width:620px}
+.hero-side{padding:32px;display:flex;flex-direction:column;gap:20px;justify-content:space-between}
+.hero-side p{font-size:18px;line-height:1.6;color:var(--text)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips .tag{background:var(--sky)}
+.now{border-top:var(--b);padding-top:16px;display:flex;flex-direction:column;gap:10px}
+.now .lbl{font-family:var(--f-mono);font-size:12px;font-weight:700}
+.now div{display:flex;gap:10px;align-items:center;font-weight:500;font-size:16px}
+.dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);flex:none}
+
+/* resumo */
+.resume{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-top:40px}
+.resume .box{padding:28px;display:flex;flex-direction:column;gap:10px}
+.resume .lbl{font-family:var(--f-mono);font-size:12px;font-weight:700}
+.resume .big{font-size:21px;line-height:1.35;font-weight:600;letter-spacing:-.015em}
+.resume p.s{color:var(--muted);font-size:16px;line-height:1.55}
+
+/* capítulos */
+.chapter{padding-top:112px;display:flex;flex-direction:column;gap:36px}
+.head{display:flex;flex-direction:column;gap:16px;max-width:860px}
+.num{align-self:flex-start;font-family:var(--f-mono);font-size:13px;font-weight:700;background:var(--ink);color:var(--bg);padding:5px 10px;border-radius:6px}
+h2{font-size:clamp(34px,4.6vw,56px);font-weight:800;letter-spacing:-.04em;line-height:1.02}
+.head p,.prose p{font-size:19px;line-height:1.62;color:var(--text)}
+.prose{display:flex;flex-direction:column;gap:16px;max-width:780px}
+h3{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.25}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card{padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card p{color:var(--muted);font-size:16px;line-height:1.55}
+.from{font-family:var(--f-mono);font-size:12px;font-weight:700;color:var(--cobalt);text-transform:uppercase;letter-spacing:.03em}
+
+/* fontes */
+.src{padding:26px;display:flex;flex-direction:column;gap:12px}
+.src .q{font-family:var(--f-mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.src .ask{font-size:17px;font-weight:600;line-height:1.4}
+.src .ans{font-size:16px;line-height:1.55;color:var(--muted);border-top:2px dashed #BDB5A6;padding-top:12px}
+
+/* números */
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.stat{padding:30px;display:flex;flex-direction:column;gap:12px}
+.stat b{font-size:clamp(56px,7vw,92px);font-weight:800;letter-spacing:-.05em;line-height:.9;font-variant-numeric:tabular-nums}
+.stat p{font-size:17px;line-height:1.5}
+.stat small{font-family:var(--f-mono);font-size:12px;font-weight:700}
+.stat.blue{background:var(--cobalt);color:#fff}
+.stat.blue small{color:#DCE4FF}
+.stat.yellow{background:var(--sun)}
+.funnel{padding:32px;display:flex;flex-direction:column;gap:18px}
+.funnel .t{font-weight:700;font-size:19px}
+.bar{display:grid;grid-template-columns:120px minmax(0,1fr) 64px;gap:16px;align-items:center}
+.bar span{font-weight:600}
+.track{height:34px;background:#F3EEE3;border:var(--b);border-radius:10px;overflow:hidden}
+.fill{height:100%;background:var(--tomato);border-right:var(--b)}
+.fill.gray{background:#BDB5A6}
+.bar b{font-size:26px;font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+.funnel p{font-size:16px;color:var(--muted);line-height:1.55}
+.callout{background:var(--ink);color:var(--bg);border-radius:22px;padding:36px 40px;display:flex;gap:28px;align-items:center}
+.callout .e{font-size:44px;flex:none}
+.callout p{font-size:clamp(20px,2.4vw,28px);line-height:1.4;font-weight:500}
+.aside{padding:24px 28px;background:var(--peach);display:flex;gap:20px;align-items:flex-start}
+.aside b{font-size:44px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.aside p{font-size:16px;line-height:1.55}
+
+/* prioridade */
+.qs .card .q{font-family:var(--f-mono);font-size:12px;font-weight:700}
+.finding{padding:24px;display:flex;flex-direction:column;gap:10px}
+.sev{align-self:flex-start;font-family:var(--f-mono);font-size:12px;font-weight:700;border:var(--b);border-radius:999px;padding:3px 10px}
+.sev.s4{background:var(--tomato)}
+.sev.s3{background:var(--sun)}
+.finding p{color:var(--muted);font-size:15px;line-height:1.5}
+.finding .ev{font-family:var(--f-mono);font-size:12px;color:var(--soft)}
+
+/* escopo */
+.scope ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:1.45}
+.scope li{display:flex;gap:10px}
+.scope .in{background:var(--mint)}
+.scope .in li::before{content:"✓";font-weight:800}
+.scope .out li{color:var(--muted)}
+.scope .out li::before{content:"→";color:var(--soft)}
+.scope .lbl{font-family:var(--f-mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+
+/* imagens reais */
+.figure{margin:0;display:flex;flex-direction:column;gap:10px}
+.figure img{display:block;width:100%;height:auto;border-radius:18px;border:var(--b);background:#fff;box-shadow:var(--sh)}
+.figure figcaption{font-family:var(--f-mono);font-size:12px;color:var(--soft);line-height:1.5}
+.scroll-x{overflow-x:auto;border-radius:18px;border:var(--b);background:#fff;box-shadow:var(--sh)}
+.scroll-x img{display:block;min-width:820px;width:100%;height:auto;border:0;border-radius:0;box-shadow:none}
+.split{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:40px;align-items:start}
+.split .figure img{max-width:300px}
+
+/* handoff */
+.note{background:var(--sun);border:var(--b);border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--sh);transform:rotate(-1deg)}
+.note h3{font-size:18px}
+.note ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.45}
+.note li{display:flex;gap:10px;align-items:flex-start}
+.note li span{flex:none;width:22px;height:22px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--f-mono);font-size:11px;font-weight:700}
+.handoff-grid{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);gap:40px;align-items:start}
+.contents{display:flex;flex-wrap:wrap;gap:8px}
+.contents .tag{background:var(--lilac)}
+.tbl{overflow-x:auto;background:var(--paper);border:var(--b);border-radius:20px;box-shadow:var(--sh)}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:15px}
+th,td{text-align:left;padding:14px 18px;border-bottom:2px solid var(--ink);vertical-align:top;line-height:1.45}
+th{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;font-weight:700;background:var(--sun)}
+tr:last-child td{border-bottom:0}
+td code{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--cobalt)}
+
+/* status */
+.state .card .badge{align-self:flex-start}
+.badge.go{background:var(--mint)}
+.badge.wait{background:var(--sun)}
+
+/* ia + aprendizados */
+.ai .card .n{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--tomato)}
+.ai .card:nth-child(2){background:var(--sky)}
+.ai .card:nth-child(4){background:var(--lilac)}
+.lesson{padding:28px;display:flex;flex-direction:column;gap:10px}
+.lesson:nth-child(1){background:var(--peach)}
+.lesson:nth-child(2){background:var(--mint)}
+.lesson:nth-child(3){background:var(--sky)}
+.lesson p{font-size:16px;line-height:1.55;color:var(--text)}
+
+/* fim */
+.end{margin-top:112px;margin-bottom:56px;background:var(--cobalt);color:#fff;padding:48px;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-end}
+.end p{font-size:clamp(30px,4.4vw,56px);font-weight:800;letter-spacing:-.04em;line-height:1;max-width:640px}
+.end .btns{display:flex;flex-wrap:wrap;gap:12px}
+.pillbtn{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:999px;border:var(--b);background:var(--paper);color:var(--ink);text-decoration:none;font-weight:700;box-shadow:var(--sh-s);transition:transform .15s ease,box-shadow .15s ease}
+.pillbtn.y{background:var(--sun)}
+.pillbtn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+
+
+/* hero visual */
+.hero-vis{background:var(--sky);padding:60px 24px 24px;display:flex;flex-direction:column;position:relative}
+.hero-vis .lbl{position:absolute;top:16px;left:16px}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.duo figure{margin:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.duo img{width:100%;height:auto;aspect-ratio:430/860;object-fit:cover;object-position:top;display:block;border:var(--b);border-radius:20px;box-shadow:var(--sh-s);background:#fff}
+.duo figcaption{font-size:15px;line-height:1.45;font-weight:500}
+.duo figcaption b{display:block;font-family:var(--f-mono);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:28px}
+.meta > div{padding:20px 24px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.meta > div + div{border-left:var(--b)}
+.meta .lbl{font-family:var(--f-mono);font-size:12px;font-weight:700}
+.meta span:last-child{font-size:16px;font-weight:500;line-height:1.45}
+/* telas reais */
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,1.35fr);gap:20px;align-items:start;overflow-x:auto;background:var(--sky);border:var(--b);border-radius:26px;padding:32px 24px;scroll-snap-type:x mandatory}
+.gallery figure{margin:0;min-width:0;display:flex;flex-direction:column;gap:12px;scroll-snap-align:start}
+.gallery img{width:100%;height:auto;aspect-ratio:430/932;object-fit:cover;object-position:bottom;display:block;border:var(--b);border-radius:22px;box-shadow:var(--sh);background:#fff}
+.gallery figcaption{font-size:14px;line-height:1.45;color:var(--text)}
+.gallery figcaption b{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:6px;border:2px solid var(--ink);border-radius:999px;padding:1px 8px;background:var(--sun);font-weight:700}
+.gallery figure.wide img{aspect-ratio:430/400}
+.hint{font-family:var(--f-mono);font-size:12px;color:var(--soft)}
+.stats.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.stats.four .stat b{font-size:clamp(48px,5vw,72px)}
+.quote-in{background:var(--mint);padding:28px 32px;display:flex;flex-direction:column;gap:8px}
+.quote-in p{font-size:19px;line-height:1.55}
+@media (max-width:1000px){.stats.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.gallery{display:flex}.gallery figure{flex:none;width:210px}.gallery figure.wide{width:260px}.meta{grid-template-columns:repeat(2,minmax(0,1fr))}.meta > div:nth-child(3){border-left:0}.meta > div:nth-child(n+3){border-top:var(--b)}}
+@media (max-width:640px){.stats.four{grid-template-columns:1fr}.meta{grid-template-columns:1fr}.meta > div + div{border-left:0;border-top:var(--b)}.gallery{padding:24px 16px;gap:18px}.gallery{display:flex;padding:24px 16px;gap:18px}.gallery figure{flex:none;width:210px}.gallery figure.wide{width:260px}.hero-vis{padding:56px 16px 20px}.duo{gap:12px}.duo figcaption{font-size:14px}}
+
+@media (max-width:900px){
+ .hero,.resume,.stats{grid-template-columns:1fr}
+ .split,.handoff-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+ :root{--sh:4px 4px 0 var(--ink)}
+ .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+ .topbar{padding:6px 14px}
+ .hero{padding-top:28px;gap:20px}
+ .hero-main{padding:28px 22px}
+ .hero-side,.resume .box,.card,.stat,.src,.lesson{padding:22px}
+ .chapter{padding-top:80px;gap:28px}
+ .grid,.grid.two{grid-template-columns:1fr;gap:18px}
+ .bar{grid-template-columns:84px minmax(0,1fr) 48px;gap:10px}
+ .bar b{font-size:20px}
+ .funnel{padding:22px}
+ .callout{flex-direction:column;align-items:flex-start;gap:12px;padding:26px 22px}
+ .aside{flex-direction:column;gap:8px}
+ .screens{padding:28px 12px}
+ .note{transform:none}
+ .end{padding:32px 22px;margin-top:80px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="topbar" aria-label="Navegação">
+    <a href="index.html"><span aria-hidden="true">←</span> Todos os projetos</a>
+    <a class="brand" href="index.html">kaique<span>.</span>martins</a>
+    <span class="tag" style="background:var(--sun)">Case 02</span>
+  </nav>
+
+  <header class="hero">
+    <div class="box hero-main">
+      <span class="kicker">PROJETO REAL · E-COMMERCE · 2026</span>
+      <h1>Como achei onde um e‑commerce perdia vendas no celular.</h1>
+      <p class="lede">Projeto freelance para uma loja online de acessórios para celular, do diagnóstico com GA4 e Clarity a dois handoffs entregues ao time.</p>
+    </div>
+    <div class="box hero-vis" aria-label="A solução">
+      <span class="tag lbl" style="background:var(--sun)">A solução em duas entregas</span>
+      <div class="duo">
+        <figure><img src="assets/ecommerce/adicionado.png" alt="Carrinho lateral aberto no celular, com o aviso de produto adicionado, o resumo e o botão Finalizar compra" width="430" height="932"><figcaption><b>Handoff 01 · Carrinho</b></figcaption></figure>
+        <figure><img src="assets/ecommerce/hero-senha.png" alt="Tela Confira seu e-mail, com o endereço mascarado e o botão Reenviar link" width="315" height="675"><figcaption><b>Handoff 02 · Senha</b></figcaption></figure>
+      </div>
+    </div>
+  </header>
+
+  <section class="box meta" aria-label="Ficha do projeto">
+    <div><span class="lbl">MEU PAPEL</span><span>UX Designer, do diagnóstico ao handoff, como freelancer</span></div>
+    <div><span class="lbl">TEMPO</span><span>4 semanas, outubro a novembro de 2026</span></div>
+    <div><span class="lbl">FERRAMENTAS</span><span>GA4, Clarity, teste de uso, Figma, Claude</span></div>
+    <div><span class="lbl">STATUS</span><span>Os dois handoffs estão em implementação</span></div>
+  </section>
+
+  <section class="resume" aria-label="Resumo" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+    <div class="box">
+      <span class="lbl">O PROBLEMA</span>
+      <p class="big">No celular, metade de quem colocava algo no carrinho não chegava a pagar.</p>
+      <p class="s">O carrinho não aparecia depois de adicionar. E logo depois, quem já tinha conta travava no login.</p>
+    </div>
+    <div class="box" style="background:var(--sun)">
+      <span class="lbl">O QUE EU FIZ</span>
+      <p class="big">Dois handoffs, um pra cada bloqueio.</p>
+      <p class="s" style="color:var(--text)"><b>Carrinho:</b> separei "Comprar" de "Adicionar ao carrinho" e criei um carrinho lateral que mostra o que entrou, sem a pessoa sair da página.</p>
+      <p class="s" style="color:var(--text)"><b>Senha:</b> desenhei uma recuperação que diz o próximo passo depois de pedir o link e leva a pessoa de volta à compra.</p>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="chapter" aria-labelledby="c1">
+    <div class="head">
+      <span class="num">01 · Contexto e pesquisa</span>
+      <h2 id="c1">Antes de redesenhar, fui entender onde a compra travava</h2>
+      <p>O pedido era aberto: achar os maiores problemas do site. O líder de e-commerce já tinha um palpite. Pra ele, as pessoas não achavam o botão do carrinho no topo da página.</p>
+      <p>Meus 10 anos com investimentos me ensinaram a entender um problema pelos dados antes de decidir o que fazer. Aqui, o ponto de partida foi o funil de compra. Usei quatro fontes, cada uma pra responder uma coisa.</p>
+    </div>
+    <div class="grid">
+      <div class="box src">
+        <span class="q" style="color:var(--cobalt)">GA4 · funil e eventos</span>
+        <p class="ask">Em que etapa as pessoas desistem?</p>
+        <p class="ans">Entre o carrinho e o pagamento, e bem mais no celular. Também mostrou que a medição tinha erros.</p>
+      </div>
+      <div class="box src">
+        <span class="q" style="color:var(--cobalt)">Clarity · calor e gravações</span>
+        <p class="ask">O que as pessoas tentam fazer e não conseguem?</p>
+        <p class="ans">Muitos toques em coisas que não respondem, e uma perda grande logo depois de "Finalizar compra", no login.</p>
+      </div>
+      <div class="box src">
+        <span class="q" style="color:var(--cobalt)">Teste de uso · 7 pessoas</span>
+        <p class="ask">Como é comprar e entrar na conta, do começo ao fim?</p>
+        <p class="ans">Teste exploratório com 7 pessoas do time interno, no iPhone e no computador. 9 achados. Como elas já conhecem a loja, um cliente novo tende a travar nos mesmos pontos ou em mais.</p>
+      </div>
+      <div class="box src">
+        <span class="q" style="color:var(--cobalt)">Heurísticas · Nielsen</span>
+        <p class="ask">Quais princípios a página de produto quebra?</p>
+        <p class="ans">Nada mostra que o produto entrou no carrinho, e a mesma coisa aparece com nomes diferentes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="chapter" aria-labelledby="c2">
+    <div class="head">
+      <span class="num">02 · O que os números mostraram</span>
+      <h2 id="c2">O carrinho escondido era real. Mas o problema continuava depois dele.</h2>
+      <p>Quando a pessoa conseguia seguir, ela travava de novo na hora de entrar na conta. Eram dois bloqueios, um atrás do outro.</p>
+    </div>
+
+    <div class="box funnel">
+      <span class="t">Sessões com produto no carrinho que não começaram o pagamento</span>
+      <div class="bar"><span>Celular</span><div class="track"><div class="fill" style="width:51%"></div></div><b>51%</b></div>
+      <div class="bar"><span>Computador</span><div class="track"><div class="fill gray" style="width:38%"></div></div><b>38%</b></div>
+      <p>No Clarity, 98 sessões tocaram em "Finalizar compra", mas só 63 chegaram no pagamento. O que tinha no meio era o login. <span class="mono" style="font-size:12px">Fonte: GA4 e Clarity</span></p>
+    </div>
+
+    <div class="stats four">
+      <div class="box stat blue"><b>2,2×</b><p>Quem passa pelo login converte mais que o dobro da média do site. 2,86% contra 1,32%.</p><small>CLARITY · 30 DIAS</small></div>
+      <div class="box stat yellow"><b>48%</b><p>de quem chega no login são usuários recorrentes, que já tinham visitado a loja antes.</p><small>CLARITY · 451 USUÁRIOS</small></div>
+      <div class="box stat"><b style="color:var(--tomato)">24%</b><p>das sessões no login tinham toques em algo que não respondia. No site todo, 3,2%.</p><small>CLARITY · 734 SESSÕES</small></div>
+      <div class="box stat"><b>3,3×</b><p>O evento de pagamento disparava 3,3 vezes por checkout. Sem corrigir isso, nenhum antes e depois seria confiável.</p><small>GA4 · AUDITORIA</small></div>
+    </div>
+
+    <div class="callout">
+      <p>Ou seja: o cliente mais decidido, muitas vezes recorrente, era quem mais travava. Isso mudou o foco do projeto.</p>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="chapter" aria-labelledby="c3">
+    <div class="head">
+      <span class="num">03 · Prioridade</span>
+      <h2 id="c3">Achei 16 problemas. Escolhi 2.</h2>
+      <p>Tentar resolver tudo de uma vez era o jeito mais rápido de não aprovar nada. Então fiz três perguntas pra cada achado.</p>
+    </div>
+    <div class="grid qs">
+      <div class="box card"><span class="q">PERGUNTA 1</span><h3>Quão grave é?</h3><p>Escala de Nielsen, de 1 a 4. Impede a compra, atrapalha muito ou só incomoda.</p></div>
+      <div class="box card"><span class="q">PERGUNTA 2</span><h3>Quem sofre com isso?</h3><p>Um problema no caminho de quem já está comprando custa mais do que um problema na vitrine.</p></div>
+      <div class="box card"><span class="q">PERGUNTA 3</span><h3>Dá pra mudar?</h3><p>As telas de login são da plataforma de e-commerce, não da loja. Isso mudava o tipo de entrega.</p></div>
+    </div>
+    <div class="prose">
+      <p>Os dois focos foram o carrinho e a recuperação de senha, os dois com severidade 4. Garantia, ficha técnica, avaliações e lista de desejos ficaram anotados pra uma próxima rodada.</p>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="chapter" aria-labelledby="c4">
+    <div class="head">
+      <span class="num">04 · Handoff 01 · Carrinho</span>
+      <h2 id="c4">Fazer o carrinho aparecer na hora certa</h2>
+      <p>Não era só o ícone. A página tinha dois botões "Comprar", nenhum jeito de adicionar sem ir direto pro pagamento, e o aviso de produto adicionado cobria a sacola.</p>
+    </div>
+
+    <div class="gallery" tabindex="0" aria-label="Telas do handoff do carrinho">
+      <figure><img src="assets/ecommerce/pdp.png" alt="Página de produto com Comprar e Adicionar ao carrinho" width="430" height="1300"><figcaption><b>Produto</b><br>"Comprar" vai pro pagamento. "Adicionar ao carrinho" abre o carrinho.</figcaption></figure>
+      <figure><img src="assets/ecommerce/adicionado.png" alt="Carrinho lateral com um item, numerado com as mudanças do handoff" width="430" height="932"><figcaption><b>Carrinho lateral</b><br>Aviso, resumo e "Finalizar compra" antes das recomendações.</figcaption></figure>
+      <figure><img src="assets/ecommerce/dois-itens.png" alt="Carrinho lateral com capa e película" width="430" height="932"><figcaption><b>Dois itens</b><br>Capa e película juntas, sem sair da página.</figcaption></figure>
+      <figure><img src="assets/ecommerce/vazio.png" alt="Carrinho lateral vazio com Ver novidades e Escolher meu aparelho" width="430" height="932"><figcaption><b>Vazio</b><br>Em vez de uma tela em branco, dois caminhos pra continuar.</figcaption></figure>
+      <figure class="wide"><img src="assets/ecommerce/home-cards.png" alt="Vitrine da home com Ver opções, Comprar e o botão da sacola" width="430" height="400"><figcaption><b>Vitrine</b><br>Produto com variação mostra "Ver opções". Sem variação, "Comprar" e a sacola.</figcaption></figure>
+    </div>
+    <p class="hint">Telas do Figma, no celular. A marca foi ocultada por confidencialidade.</p>
+
+    <div class="grid">
+      <div class="box card"><span class="from">Veio do teste de uso</span><h3>Dois caminhos claros</h3><p>"Comprar" continua sendo o botão principal. "Adicionar ao carrinho" fica logo abaixo, pra quem quer levar capa e película juntas.</p></div>
+      <div class="box card"><span class="from">Veio da heurística</span><h3>Carrinho lateral, não outra página</h3><p>Escolhi o carrinho lateral pra pessoa continuar na mesma página de produtos. Assim ela não precisa voltar e se localizar de novo a cada item que adiciona.</p></div>
+      <div class="box card"><span class="from">Veio do palpite do cliente</span><h3>Sacola azul e contador</h3><p>O mesmo símbolo no site todo, na cor de ação. O contador só aparece quando tem item.</p></div>
+      <div class="box card"><span class="from">Veio do catálogo</span><h3>Cada vitrine com a regra certa</h3><p>Com cor ou modelo, "Ver opções". Sem variação, "Comprar" e a sacola. Assim ninguém leva a capa do celular errado.</p></div>
+    </div>
+
+    <div class="grid two scope">
+      <div class="box card in"><span class="lbl">Entrou no handoff</span><ul><li>"Adicionar ao carrinho" e "Comprar" na página de produto</li><li>Carrinho lateral com os estados de adicionado, dois itens, vazio e erro</li><li>Sacola e contador no topo e nas vitrines</li><li>Eventos do GA4 pra comparar antes e depois</li></ul></div>
+      <div class="box card out"><span class="lbl" style="color:var(--soft)">Ficou pra depois, de propósito</span><ul><li>Selo de garantia por categoria</li><li>Bloco de destaques na ficha do produto</li><li>Cabeçalho novo no computador</li></ul><p style="margin-top:6px">Cheguei a desenhar esses itens. Tirei porque muita mudança junta dificulta a aprovação e não deixa saber o que mexeu na conversão.</p></div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="chapter" aria-labelledby="c5">
+    <div class="head">
+      <span class="num">05 · Handoff 02 · Recuperação de senha</span>
+      <h2 id="c5">Trazer de volta quem esqueceu a senha</h2>
+      <p>As telas de login são da plataforma de e-commerce, e não da loja. Eu não podia só entregar telas novas. Precisava mostrar para outra empresa por que valia mudar o que é dela.</p>
+    </div>
+
+    <div class="split">
+      <figure class="figure">
+        <img src="assets/ecommerce/k6-recuperar-senha.jpg" alt="Gravação do teste no iPhone: tela de login com o link de recuperar senha em texto pequeno" width="384" height="848">
+        <figcaption>Teste gravado no iPhone, 1 min 16 s. Dados pessoais e marca ocultados.</figcaption>
+      </figure>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <h3 style="font-size:26px">O que a gravação mostrou</h3>
+        <div class="box finding"><span class="sev s4">Severidade 4</span><h3>Depois de enviar, nenhum próximo passo</h3><p>Aparece um aviso verde e a pessoa continua na mesma tela, sem saber se espera, abre o e-mail ou tenta de novo.</p></div>
+        <div class="box finding"><span class="sev s4">Severidade 4</span><h3>O e-mail cai no lixo eletrônico</h3><p>No Outlook, o e-mail de senha foi parar no lixo junto com os e-mails de ofertas.</p></div>
+        <div class="box finding"><span class="sev s3">Severidade 3</span><h3>"hotmail.vom" passa sem aviso</h3><p>Um erro de digitação no domínio é aceito, e a pessoa fica esperando um e-mail que nunca vai chegar.</p></div>
+        <p style="color:var(--muted);font-size:16px;line-height:1.55">Numa gravação do Clarity, uma pessoa tentou entrar duas vezes, não conseguiu e criou um cadastro novo no meio do checkout. Aí a loja perde o histórico de quem já comprava.</p>
+      </div>
+    </div>
+
+    <figure class="figure">
+      <div class="scroll-x"><img src="assets/ecommerce/login-fluxo-mobile.jpg" alt="Seis telas do fluxo proposto no celular: login, recuperar senha ou e-mail, confira seu e-mail, nova senha, senha alterada e link vencido" width="2180" height="703"></div>
+      <figcaption>Fluxo proposto no celular, 390 px. "Confira seu e-mail" e "Este link não vale mais" são telas novas. No celular, arraste pro lado.</figcaption>
+    </figure>
+
+    <div class="grid">
+      <div class="box card"><span class="from">Veio da gravação</span><h3>Uma tela de próximo passo</h3><p>O e-mail aparece mascarado pra conferir, com "Reenviar link" e contador, "Corrigir e-mail" e o lembrete de olhar o lixo eletrônico.</p></div>
+      <div class="box card"><span class="from">Veio do orçamento</span><h3>Link por e-mail, código como plano B</h3><p>SMS e WhatsApp têm custo por envio. Preferi um plano principal sem custo extra, com o link que a plataforma já oferece.</p></div>
+      <div class="box card"><span class="from">Veio do funil</span><h3>Voltar pro carrinho</h3><p>Depois de criar a senha nova, a pessoa já entra na conta e volta pra onde estava. É aqui que os dois handoffs se conectam.</p></div>
+      <div class="box card"><span class="from">Veio da plataforma</span><h3>Pedidos em forma de pergunta</h3><p>Pra cada pedido, a plataforma responde se já dá pra configurar, se precisa de customização ou se não é possível.</p></div>
+    </div>
+
+    <figure class="figure">
+      <img src="assets/ecommerce/login-confira-desktop.jpg" alt="Tela Confira seu e-mail no computador, com o endereço mascarado e o botão Reenviar link" width="1146" height="715">
+      <figcaption>A mesma tela no computador, 1440 px. Uma coluna de até 488 px, testada de 320 a 1440 px.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 06 -->
+  <section class="chapter" aria-labelledby="c6">
+    <div class="head">
+      <span class="num">06 · Entrega</span>
+      <h2 id="c6">Um handoff que dá pra entender sem reunião</h2>
+      <p>Quem implementa não estava nas minhas conversas com o cliente. Então cada regra precisava estar escrita, e no lugar onde o desenvolvedor vai procurar.</p>
+    </div>
+    <div class="handoff-grid">
+      <div class="note">
+        <h3>O que mudou nesta tela</h3>
+        <ol>
+          <li><span>1</span>"Adicionar ao carrinho" abaixo de "Comprar", com contorno azul. Abre o carrinho lateral.</li>
+          <li><span>2</span>Barra fixa com preço, sacola e "Comprar". A sacola faz o mesmo que o botão 1.</li>
+          <li><span>3</span>Sacola azul no topo, com contador que some quando o carrinho está vazio.</li>
+        </ol>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <p style="font-size:18px;line-height:1.6;color:var(--text)">No Figma, cada tela ganhou um cartão amarelo ao lado, só com o que mudou, e bolinhas numeradas em cima dos elementos. As mesmas regras ficaram nas anotações do Dev Mode e num documento à parte.</p>
+        <p style="font-size:18px;line-height:1.6;color:var(--text)">No GA4, pedi um evento novo pra saber quando o carrinho abre, a origem de cada clique em comprar e a correção do evento de pagamento que contava em dobro.</p>
+        <div class="contents"><span class="tag">Componentes</span><span class="tag">Tokens</span><span class="tag">Responsivo</span><span class="tag">Estados</span><span class="tag">Acessibilidade</span><span class="tag">Critérios de aceite</span><span class="tag">Eventos do GA4</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section class="chapter" aria-labelledby="c7">
+    <div class="head">
+      <span class="num">07 · Onde o projeto está</span>
+      <h2 id="c7">Em delivery, com as métricas definidas</h2>
+      <p>Os dois handoffs foram entregues em novembro de 2026 e estão em implementação pelo time de desenvolvimento. A medição acontece depois que as mudanças forem ao ar. A linha de base e os indicadores já ficaram definidos antes do lançamento.</p>
+    </div>
+    <div class="box quote-in">
+      <span class="lbl mono" style="font-size:12px;font-weight:700">COMO A PROPOSTA FOI RECEBIDA</span>
+      <p>O time recebeu a proposta muito bem. O que mais chamou atenção foi o dado de que quem passa pelo login converte o dobro.</p>
+    </div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>O que vou medir</th><th>Como</th><th>Linha de base</th></tr></thead>
+        <tbody>
+          <tr><td>Do carrinho ao pagamento, no celular</td><td>Sessões que começam o checkout sobre sessões com produto no carrinho, 4 semanas antes e 4 depois</td><td><b>49%</b></td></tr>
+          <tr><td>Abertura do carrinho</td><td>Quantas vezes abre sozinho e quantas pelo ícone</td><td>Não era medido</td></tr>
+          <tr><td>Recuperação de senha concluída</td><td>Senhas trocadas sobre recuperações pedidas</td><td>Pedido à plataforma</td></tr>
+          <tr><td>Cadastros duplicados</td><td>Contas novas com CPF que já existia</td><td>Pedido à plataforma</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose"><p>Quando cada entrega completar 4 semanas no ar, atualizo este case com os números.</p></div>
+  </section>
+
+  <!-- IA -->
+  <section class="chapter" id="como-usei-ia" aria-labelledby="c8">
+    <div class="head">
+      <span class="num">Bastidores · IA no processo</span>
+      <h2 id="c8">Como usei IA no projeto</h2>
+      <p>Usei o Claude como ferramenta de produção. A IA executava; o problema, os critérios e cada decisão de design eram meus.</p>
+    </div>
+    <div class="grid ai">
+      <div class="box card"><span class="n">01</span><h3>Cruzar os dados</h3><p>Organizar as exportações do GA4 e do Clarity e cruzar com os achados do teste. A leitura do que importava e a priorização ficaram comigo.</p></div>
+      <div class="box card"><span class="n">02</span><h3>Documentar o discovery</h3><p>Um documento vivo com cada achado, sua evidência e sua severidade, que eu atualizava a cada nova fonte.</p></div>
+      <div class="box card"><span class="n">03</span><h3>Montar e anotar o Figma</h3><p>Versões mobile e desktop de cada tela, notas amarelas e anotações do Dev Mode, sempre com a minha revisão antes de seguir.</p></div>
+      <div class="box card"><span class="n">04</span><h3>Escrever os handoffs</h3><p>Regras, estados, critérios de aceite e eventos, a partir das decisões que eu tinha tomado com o cliente.</p></div>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section class="chapter" aria-labelledby="c9">
+    <div class="head">
+      <span class="num">08 · O que eu levo</span>
+      <h2 id="c9">O que esse projeto me ensinou</h2>
+      <p>Foi meu primeiro projeto com um cliente, trabalhando com os dados da loja e uma plataforma que eu não controlava.</p>
+    </div>
+    <div class="grid">
+      <div class="box lesson"><h3>Olhar os dados antes de desenhar</h3><p>Comecei por um palpite sobre um ícone. Os dados mostraram o fluxo inteiro e um segundo ponto de atrito, no login.</p></div>
+      <div class="box lesson"><h3>Cortar escopo foi a parte difícil</h3><p>Tirar a garantia e o cabeçalho doeu. Mas foi isso que deixou o handoff possível de aprovar e de medir.</p></div>
+      <div class="box lesson"><h3>Desenhar o que não é meu</h3><p>Quando a tela é de outra empresa, a entrega vira conversa: evidência, pedido priorizado e perguntas claras.</p></div>
+    </div>
+  </section>
+
+  <footer class="box end">
+    <p>Quer conversar sobre esse case? Vou gostar.</p>
+    <div class="btns">
+      <a class="pillbtn y" href="mailto:kaiquechavess@hotmail.com">Me manda um e-mail →</a>
+      <a class="pillbtn" href="https://www.linkedin.com/in/kaique-martinss" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="pillbtn" href="index.html">Ver outros projetos</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
