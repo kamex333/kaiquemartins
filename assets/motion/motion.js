@@ -76,6 +76,9 @@ cards.forEach(function(c){
   });
 });
 
+/* ao voltar pelo navegador, a página volta do cache com a transição ainda cobrindo a tela */
+addEventListener('pageshow',function(){wipe.className='fx-wipe';cur.classList.remove('on')});
+
 /* contadores */
 var nums=[].slice.call(document.querySelectorAll('a.fx-card span')).filter(function(s){return /^\d+(,\d+)?(%|×)$/.test(s.textContent.trim())});
 var nio=new IntersectionObserver(function(es){es.forEach(function(e){
