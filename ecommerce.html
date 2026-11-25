@@ -195,6 +195,8 @@ td code{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--cob
 .gallery figcaption{font-size:14px;line-height:1.45;color:var(--text)}
 .gallery figcaption b{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.05em;display:inline-block;margin-bottom:6px;border:2px solid var(--ink);border-radius:999px;padding:1px 8px;background:var(--sun);font-weight:700}
 .gallery figure.wide img{aspect-ratio:430/400}
+.gallery{scroll-padding-inline:24px}
+.gallery::after{content:"";flex:none;width:1px}
 .hint{font-family:var(--f-mono);font-size:12px;color:var(--soft)}
 .stats.four{grid-template-columns:repeat(4,minmax(0,1fr))}
 .stats.four .stat b{font-size:clamp(48px,5vw,72px)}
@@ -202,7 +204,7 @@ td code{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--cob
 .quote-in p{font-size:19px;line-height:1.55}
 @media (max-width:1000px){.stats.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:900px){.gallery{display:flex}.gallery figure{flex:none;width:210px}.gallery figure.wide{width:260px}.meta{grid-template-columns:repeat(2,minmax(0,1fr))}.meta > div:nth-child(3){border-left:0}.meta > div:nth-child(n+3){border-top:var(--b)}}
-@media (max-width:640px){.stats.four{grid-template-columns:1fr}.meta{grid-template-columns:1fr}.meta > div + div{border-left:0;border-top:var(--b)}.gallery{padding:24px 16px;gap:18px}.gallery{display:flex;padding:24px 16px;gap:18px}.gallery figure{flex:none;width:210px}.gallery figure.wide{width:260px}.hero-vis{padding:56px 16px 20px}.duo{gap:12px}.duo figcaption{font-size:14px}}
+@media (max-width:640px){.stats.four{grid-template-columns:1fr}.meta{grid-template-columns:1fr}.meta > div + div{border-left:0;border-top:var(--b)}.gallery{display:flex;padding:24px 20px;gap:18px;scroll-padding-inline:20px}.gallery figure{flex:none;width:210px}.gallery figure.wide{width:260px}.hero-vis{padding:56px 16px 20px}.duo{gap:12px}.duo figcaption{font-size:14px}}
 
 @media (max-width:900px){
  .hero,.resume,.stats{grid-template-columns:1fr}
@@ -507,7 +509,7 @@ td code{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--cob
     </div>
   </footer>
 </div>
-<script>window.CM_ON=["count","progress","chapter","bars","mark","parallax","zoom"];window.CM_CFG={color:"#FF5A36",ink:"#111111",mark:"#FFD23F",title:"Onde um e\u2011commerce perdia vendas no celular"};</script>
+<script>window.CM_ON=["count","progress","chapter","bars","mark","zoom"];window.CM_CFG={color:"#FF5A36",ink:"#111111",mark:"#FFD23F",title:"Onde um e\u2011commerce perdia vendas no celular"};</script>
 <script src="assets/motion/case-motion.js"></script>
 </body>
 </html>
