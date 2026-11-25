@@ -228,6 +228,24 @@ td code{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--cob
  .note{transform:none}
  .end{padding:32px 22px;margin-top:80px}
 }
+.ut{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px}
+.ut .box{padding:28px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.ut .q{font-family:var(--f-mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--cobalt)}
+.ut ul,.ut ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:1.5}
+.ut-how li{padding-left:18px;position:relative}
+.ut-how li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:2px;background:var(--tomato);border:1.5px solid var(--ink)}
+.ut-why{font-size:16px;line-height:1.55;color:var(--muted);border-top:2px dashed #BDB5A6;padding-top:14px}
+.ut .k,.hit-l .k{font-weight:700;color:var(--ink)}
+.ut-tasks{background:var(--sky)!important}
+.ut-tasks ol{counter-reset:t}
+.ut-tasks li{counter-increment:t;display:flex;gap:12px;align-items:flex-start}
+.ut-tasks li::before{content:counter(t,decimal-leading-zero);flex:none;font-family:var(--f-mono);font-size:12px;font-weight:700;background:var(--paper);border:2px solid var(--ink);border-radius:6px;padding:2px 6px;margin-top:1px}
+.hit{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 84px;gap:18px;align-items:center}
+.hit-l{display:flex;flex-direction:column;gap:2px;font-size:16px;line-height:1.4}
+.hit-l span{font-size:14px;color:var(--muted)}
+.hit-n{font-size:22px;font-weight:800;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media (max-width:900px){.ut{grid-template-columns:1fr}}
+@media (max-width:640px){.ut .box{padding:22px}.ut{gap:18px}.hit{grid-template-columns:minmax(0,1fr) 64px;gap:8px 12px}.hit-l{grid-column:1/-1}.hit-n{font-size:18px}.hits{gap:22px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <link rel="stylesheet" href="assets/motion/case-motion.css">
@@ -300,13 +318,44 @@ td code{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--cob
       <div class="box src">
         <span class="q" style="color:var(--cobalt)">Teste de uso · 7 pessoas</span>
         <p class="ask">Como é comprar e entrar na conta, do começo ao fim?</p>
-        <p class="ans">Teste exploratório com 7 pessoas do time interno, no iPhone e no computador. 9 achados. Como elas já conhecem a loja, um cliente novo tende a travar nos mesmos pontos ou em mais.</p>
+        <p class="ans">Teste exploratório com 7 pessoas do time interno, todas no celular. 9 achados.</p>
       </div>
       <div class="box src">
         <span class="q" style="color:var(--cobalt)">Heurísticas · Nielsen</span>
         <p class="ask">Quais princípios a página de produto quebra?</p>
         <p class="ans">Nada mostra que o produto entrou no carrinho, e a mesma coisa aparece com nomes diferentes.</p>
       </div>
+    </div>
+
+    <div class="ut">
+      <div class="box ut-how">
+        <span class="q">Como foi o teste de uso</span>
+        <ul>
+          <li><span class="k">7 pessoas do time interno</span>, de áreas, idades e intimidade com tecnologia diferentes.</li>
+          <li><span class="k">Tudo no celular</span>, porque 87% dos usuários acessam o site por ele, segundo o GA4.</li>
+          <li><span class="k">Remoto, pelo Zoom</span>, com gravação de tela e anotações de cada sessão.</li>
+          <li><span class="k">10 a 18 minutos</span> por pessoa, pensando em voz alta.</li>
+        </ul>
+        <p class="ut-why"><span class="k">Por que o time e não clientes?</span> Eu precisava de respostas rápidas, e o time estava ao meu alcance. Como essas pessoas já conhecem o site, se elas travaram, um cliente novo tende a travar nos mesmos pontos ou em mais.</p>
+      </div>
+      <div class="box ut-tasks">
+        <span class="q">As 6 tarefas</span>
+        <ol>
+          <li>Comprar uma capa azul de iPhone 17 Pro Max</li>
+          <li>Colocar também um carregador portátil no carrinho</li>
+          <li>Ver o total do carrinho e seguir com a compra</li>
+          <li>Entrar na conta ou criar uma nova</li>
+          <li>Se não lembrasse a senha, recuperar</li>
+          <li>Conferir os dados e finalizar a compra</li>
+        </ol>
+      </div>
+    </div>
+    <div class="box funnel hits">
+      <span class="t">Onde as pessoas travaram no teste</span>
+      <div class="hit"><p class="hit-l"><span class="k">Achou que "Comprar" ia direto pro pagamento</span><span>Por isso não juntava mais itens no carrinho.</span></p><div class="track"><div class="fill" style="width:71.4%"></div></div><b class="hit-n">5 de 7</b></div>
+      <div class="hit"><p class="hit-l"><span class="k">Não achou o carrinho depois de adicionar</span><span>Foi pro pagamento sem ver o total.</span></p><div class="track"><div class="fill" style="width:57.1%"></div></div><b class="hit-n">4 de 7</b></div>
+      <div class="hit"><p class="hit-l"><span class="k">Não lembrava a senha e teve que recuperar</span><span>O e-mail caiu no lixo eletrônico, e ir pro e-mail e voltar pro site confundia.</span></p><div class="track"><div class="fill" style="width:42.9%"></div></div><b class="hit-n">3 de 7</b></div>
+      <p>É um teste qualitativo, feito pra achar problemas. Por isso mostro quantas pessoas travaram, e não porcentagem.</p>
     </div>
   </section>
 
@@ -359,7 +408,7 @@ td code{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--cob
     <div class="head">
       <span class="num">04 · Handoff 01 · Carrinho</span>
       <h2 id="c4">Fazer o carrinho aparecer na hora certa</h2>
-      <p>Não era só o ícone. A página tinha dois botões "Comprar", nenhum jeito de adicionar sem ir direto pro pagamento, e o aviso de produto adicionado cobria a sacola.</p>
+      <p>Não era só o ícone. A página tinha dois botões "Comprar". O da página do produto até adicionava, mas o carrinho não abria e parecia que ia direto pro pagamento, então ninguém juntava mais itens. E o aviso de produto adicionado cobria a sacola.</p>
     </div>
 
     <div class="gallery" tabindex="0" aria-label="Telas do handoff do carrinho">
