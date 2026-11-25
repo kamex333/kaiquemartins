@@ -1,0 +1,37 @@
+/* Próximo case, no fim de cada case */
+.nx-wrap{max-width:1200px;margin:0 auto;padding:112px 32px 0;box-sizing:border-box}
+.nx-wrap.in-wrap{padding:96px 0 0;max-width:none}
+.nx{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);text-decoration:none;border-radius:24px;overflow:hidden;font-family:'Geist',system-ui,sans-serif;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
+.nx-txt{display:flex;flex-direction:column;justify-content:space-between;gap:20px;padding:32px 36px}
+.nx-k{font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.nx h3{margin:8px 0 0;font-size:clamp(26px,3vw,40px);letter-spacing:-.035em;line-height:1.02}
+.nx p{margin:8px 0 0;font-size:16px;line-height:1.5;max-width:440px}
+.nx-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;font-weight:600;font-size:15px}
+.nx-vis{display:flex;gap:12px;justify-content:center;align-items:flex-start;padding:28px 20px 0;height:240px;box-sizing:border-box;overflow:hidden}
+.nx-vis img{width:30%;max-width:140px;aspect-ratio:248/540;object-fit:cover;object-position:top;border-radius:16px 16px 0 0;display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.nx:hover .nx-vis img:nth-child(1){transform:translate(-6px,-6px) rotate(-3deg)}
+.nx:hover .nx-vis img:nth-child(2){transform:translateY(-12px)}
+.nx:hover .nx-vis img:nth-child(3){transform:translate(6px,-6px) rotate(3deg)}
+.nx-roomio{background:#0F3D32;color:#FAF8F4}
+.nx-roomio .nx-k{color:#9CC9B8}
+.nx-roomio p{color:#CFE6DC}
+.nx-roomio .nx-vis{background:#164A3D}
+.nx-roomio .nx-btn{background:#FAF8F4;color:#0F3D32}
+.nx-ecom{background:#FF5A36;color:#111111;border:2px solid #111111;box-shadow:6px 6px 0 #111111}
+.nx-ecom:hover{box-shadow:10px 10px 0 #111111;transform:translate(-2px,-2px)}
+.nx-ecom .nx-vis{background:#DCE4FF;border-left:2px solid #111111}
+.nx-ecom .nx-vis img{width:38%;max-width:160px;aspect-ratio:430/860;border:2px solid #111111;border-bottom:0}
+.nx-ecom .nx-btn{background:#FFD23F;border:2px solid #111111;color:#111111}
+.nx:focus-visible{outline:3px solid #3D2BFF;outline-offset:4px}
+@media (max-width:760px){
+.nx-wrap{padding:80px 20px 0}
+.nx-wrap.in-wrap{padding:72px 0 0}
+.nx{grid-template-columns:1fr}
+.nx-txt{padding:22px 20px 24px;gap:16px}
+.nx-vis{height:150px;padding:18px 16px 0;order:-1}
+.nx-ecom .nx-vis{border-left:0;border-bottom:2px solid #111111}
+.nx h3{font-size:24px}
+.nx p{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){.nx,.nx-vis img{transition:none}}
+.nx-wrap.in-wrap + .end{margin-top:56px}
