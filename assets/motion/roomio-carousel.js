@@ -5,11 +5,11 @@ var items=[].slice.call(ol.children).map(function(li){var s=li.querySelectorAll(
 var n=items.length,cur=0;
 function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
 var rc=document.createElement('div');rc.className='rc';rc.setAttribute('role','region');rc.setAttribute('aria-roledescription','carrossel');rc.setAttribute('aria-label','Telas da reserva em '+n+' toques');
-rc.innerHTML='<div class="rc-stage">'+items.map(function(it,i){return '<figure class="rc-slide" data-i="'+i+'" role="group" aria-roledescription="tela" aria-label="'+(i+1)+' de '+n+'"><img src="'+it.src+'" alt="'+esc(it.alt)+'"></figure>'}).join('')+'</div>'+
+rc.innerHTML='<div class="rc-tabs">'+items.map(function(it,i){return '<button type="button"><small>0'+(i+1)+'</small>'+esc(it.title)+'</button>'}).join('')+'</div><div class="rc-stage">'+items.map(function(it,i){return '<figure class="rc-slide" data-i="'+i+'" role="group" aria-roledescription="tela" aria-label="'+(i+1)+' de '+n+'"><img src="'+it.src+'" alt="'+esc(it.alt)+'"></figure>'}).join('')+'</div>'+
  '<div class="rc-info"><button type="button" class="rc-btn" data-d="-1" aria-label="Tela anterior">←</button><div class="rc-text" aria-live="polite"></div><button type="button" class="rc-btn" data-d="1" aria-label="Próxima tela">→</button></div>'+
- '<div class="rc-dots">'+items.map(function(it,i){return '<button type="button" aria-label="Ir para '+esc(it.title)+'"></button>'}).join('')+'</div>';
+ '';
 ol.parentNode.insertBefore(rc,ol);(ol.closest('section')||document.body).classList.add('rc-on');
-var slides=[].slice.call(rc.querySelectorAll('.rc-slide')),dots=[].slice.call(rc.querySelectorAll('.rc-dots button')),text=rc.querySelector('.rc-text'),btns=rc.querySelectorAll('.rc-btn');
+var slides=[].slice.call(rc.querySelectorAll('.rc-slide')),dots=[].slice.call(rc.querySelectorAll('.rc-tabs button')),text=rc.querySelector('.rc-text'),btns=rc.querySelectorAll('.rc-btn');
 var POS={'-2':'ll','-1':'l','0':'c','1':'r','2':'rr'};
 function go(i){cur=Math.max(0,Math.min(n-1,i));
   slides.forEach(function(s,k){s.className='rc-slide '+(POS[k-cur]||'');s.setAttribute('aria-hidden',k===cur?'false':'true')});
