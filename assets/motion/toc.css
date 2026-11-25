@@ -1,0 +1,14 @@
+/* Sumário lateral dos capítulos (só em telas largas) */
+.toc{position:fixed;left:20px;top:50%;transform:translateY(-50%);z-index:60;display:none;font-family:'Geist',system-ui,sans-serif}
+@media (min-width:1280px){.toc{display:block}}
+.toc ol{list-style:none;margin:0;padding:10px;display:flex;flex-direction:column;gap:2px;border-radius:16px;transition:background .25s ease,box-shadow .25s ease}
+.toc a{display:flex;align-items:center;gap:12px;min-height:30px;text-decoration:none;color:inherit;border-radius:8px;padding:0 8px 0 4px}
+.toc .bar{flex:none;width:18px;height:3px;border-radius:3px;background:var(--toc-mute,#B9B4AA);transition:width .25s ease,background .25s ease}
+.toc .lbl{font-size:13px;line-height:1.2;white-space:nowrap;max-width:0;overflow:hidden;opacity:0;transition:max-width .3s ease,opacity .2s ease}
+.toc a.on .bar{width:30px;background:var(--toc-accent,#FF5A36)}
+.toc:hover ol,.toc:focus-within ol{background:var(--toc-bg,#FFFFFF);box-shadow:var(--toc-shadow,0 10px 30px rgba(0,0,0,.12))}
+.toc:hover .lbl,.toc:focus-within .lbl{max-width:260px;opacity:1}
+.toc a:hover .bar{background:var(--toc-accent,#FF5A36)}
+.toc a.on .lbl{font-weight:600}
+.toc a:focus-visible{outline:2px solid var(--toc-accent,#FF5A36);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.toc *{transition:none!important}}
