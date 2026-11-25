@@ -80,7 +80,7 @@ cards.forEach(function(c){
 addEventListener('pageshow',function(){wipe.className='fx-wipe';cur.classList.remove('on')});
 
 /* contadores */
-var nums=[].slice.call(document.querySelectorAll('a.fx-card span')).filter(function(s){return /^\d+(,\d+)?(%|×)$/.test(s.textContent.trim())});
+var nums=[].slice.call(document.querySelectorAll('a.fx-card span, a.fx-card b')).filter(function(s){return /^\d+(,\d+)?(%|×)$/.test(s.textContent.trim())});
 var nio=new IntersectionObserver(function(es){es.forEach(function(e){
   if(!e.isIntersecting||!on('count')||reduce)return;
   var s=e.target,raw=s.dataset.fxv||(s.dataset.fxv=s.textContent.trim()),m=raw.match(/^([\d,]+)(.*)$/),end=parseFloat(m[1].replace(',','.')),dec=(m[1].split(',')[1]||'').length,t0=null;

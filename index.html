@@ -23,17 +23,44 @@ html{scroll-behavior:smooth}a{color:#111111}a:hover{color:#3D2BFF}
 section[style*="padding: 88px 32px 96px"]{padding-top:48px!important;padding-bottom:64px!important;gap:32px!important}
 section[style*="padding: 140px 32px 0"]{padding-top:88px!important}
 footer[style*="margin-top: 140px"]{margin-top:88px!important;padding:72px 20px 40px!important}
-a[href="roomio.html"]>div:first-child{padding:32px 24px!important;gap:32px!important}
-a[href="roomio.html"]>div:last-child{min-height:0!important;padding:32px 12px 0!important;gap:8px!important}
-a[href="roomio.html"]>div:last-child img{width:31%!important;max-width:none!important;border-radius:18px 18px 0 0!important}
-a[href="roomio.html"]>div:last-child img:nth-child(2){width:35%!important}
-a[href="ecommerce.html"]>div:first-child{padding:32px 24px!important;gap:32px!important}
-a[href="ecommerce.html"]>div:last-child{min-height:0!important;padding:32px 12px 0!important;border-left:0!important;border-top:2px solid #111111}
 a[href^="mailto"][style*="clamp(30px"]{font-size:clamp(18px,5.8vw,40px)!important;overflow-wrap:normal!important;word-break:normal!important}
 ol>li[style*="padding: 32px"]{padding:24px!important}
 }
 </style>
 <link rel="stylesheet" href="assets/motion/motion.css">
+<style>
+.pc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch}
+.pc{display:flex;flex-direction:column;text-decoration:none;border-radius:24px;overflow:hidden}
+.pc-roomio{background:#0F3D32;color:#FAF8F4}
+.pc-ecom{background:#FF5A36;color:#111111;border:2px solid #111111;box-shadow:6px 6px 0 #111111}
+.pc-vis{height:260px;display:flex;gap:12px;justify-content:center;align-items:flex-start;padding:28px 20px 0;box-sizing:border-box;overflow:hidden}
+.pc-roomio .pc-vis{background:#164A3D}
+.pc-ecom .pc-vis{background:#DCE4FF;border-bottom:2px solid #111111}
+.pc-vis img{width:28%;max-width:150px;aspect-ratio:248/540;object-fit:cover;object-position:top;border-radius:18px 18px 0 0;display:block}
+.pc-roomio .pc-vis img:nth-child(odd){transform:translateY(20px)}
+.pc-ecom .pc-vis img{width:36%;max-width:170px;aspect-ratio:430/860;border:2px solid #111111;border-bottom:0}
+.pc-ecom .pc-vis img:nth-child(2){transform:translateY(20px)}
+.pc-body{flex:1;display:flex;flex-direction:column;gap:14px;padding:28px 28px 28px}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500}
+.pc-tags span{padding:5px 10px;border-radius:999px}
+.pc-roomio .pc-tags span{border:1px solid #3F6E61}
+.pc-ecom .pc-tags span{border:1.5px solid #111111}
+.pc h3{margin:0;font-size:clamp(28px,3vw,36px);letter-spacing:-.035em;line-height:1.02}
+.pc-roomio h3{font-weight:600}
+.pc-ecom h3{font-weight:700}
+.pc p{margin:0;font-size:16px;line-height:1.5}
+.pc-roomio p{color:#CFE6DC}
+.pc-foot{margin-top:auto;padding-top:8px;display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
+.pc-stat{display:flex;flex-direction:column;gap:2px}
+.pc-stat b{font-size:40px;line-height:1;letter-spacing:-.03em;font-weight:700}
+.pc-stat span{font-size:13px;max-width:190px;line-height:1.35}
+.pc-roomio .pc-stat span{color:#CFE6DC}
+.pc-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;font-weight:600;font-size:15px}
+.pc-roomio .pc-btn{background:#FAF8F4;color:#0F3D32}
+.pc-ecom .pc-btn{background:#FFD23F;border:2px solid #111111;color:#111111}
+@media (max-width:860px){.pc-grid{grid-template-columns:1fr}}
+@media (max-width:640px){.pc-vis{height:210px;padding:24px 16px 0}.pc-body{padding:22px 20px 24px}.pc-stat b{font-size:34px}}
+</style>
 </head>
 <body>
 <div style="font-family: 'Geist', system-ui, sans-serif; color: #111111; background: #F7F6F2; min-height: 100vh">
@@ -71,54 +98,39 @@ ol>li[style*="padding: 32px"]{padding:24px!important}
 <span style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #5C5A55">01–02</span>
 </div>
 
-<a href="roomio.html" aria-label="Abrir estudo de caso do Roomio" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0; text-decoration: none; color: #FAF8F4; background: #0F3D32; border-radius: 28px; overflow: hidden">
-<div style="padding: 48px 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px">
-<div style="display: flex; flex-direction: column; gap: 20px">
-<div style="display: flex; flex-wrap: wrap; gap: 8px; font-family: 'Geist Mono', monospace; font-size: 12px">
-<span style="padding: 6px 12px; border-radius: 999px; border: 1px solid #3F6E61">01</span>
-<span style="padding: 6px 12px; border-radius: 999px; border: 1px solid #3F6E61">App mobile</span>
-<span style="padding: 6px 12px; border-radius: 999px; border: 1px solid #3F6E61">Pesquisa + UI</span>
-<span style="padding: 6px 12px; border-radius: 999px; border: 1px solid #3F6E61">Teste de usabilidade</span>
-<span style="padding: 6px 12px; border-radius: 999px; border: 1px solid #3F6E61">2026</span>
+<div class="pc-grid">
+<a href="roomio.html" class="pc pc-roomio" aria-label="Abrir estudo de caso do Roomio">
+<div class="pc-vis">
+<img src="assets/v3/home.jpg" alt="">
+<img src="assets/v3/detalhe-topo.jpg" alt="">
+<img src="assets/v3/confirmada.jpg" alt="">
 </div>
-<h3 style="margin: 0; font-size: clamp(48px, 6vw, 80px); font-weight: 600; letter-spacing: -0.04em; line-height: 0.95">Roomio</h3>
-<p style="margin: 0; font-size: 22px; line-height: 1.4; color: #CFE6DC; max-width: 440px">Um app para reservar hospedagem para <span style="color: #F2A541">hoje</span>, com preço total desde o primeiro card e check-in sem fila. Projeto completo, da pesquisa ao teste de usabilidade e à revisão das telas.</p>
+<div class="pc-body">
+<div class="pc-tags"><span>01</span><span>App mobile</span><span>Pesquisa + UI</span><span>Teste de usabilidade</span></div>
+<h3>Roomio</h3>
+<p>Um app para reservar hospedagem para <span style="color: #F2A541">hoje</span>, com preço total desde o primeiro card e check-in sem fila.</p>
+<div class="pc-foot">
+<div class="pc-stat"><b style="font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; color: #F2A541">53%</b><span>dos viajantes já reservaram no mesmo dia</span></div>
+<span class="pc-btn">Ler o case <span aria-hidden="true">→</span></span>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end; justify-content: space-between">
-<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 56px; line-height: 1; color: #F2A541">53%</span><span style="font-size: 14px; color: #CFE6DC; max-width: 200px">dos viajantes já reservaram no mesmo dia</span></div>
-<span style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 999px; background: #FAF8F4; color: #0F3D32; font-weight: 600">Ler o case <span aria-hidden="true">→</span></span>
-</div>
-</div>
-<div style="background: #164A3D; padding: 40px 24px 0; display: flex; gap: 16px; justify-content: center; align-items: flex-end; min-height: 460px">
-<img src="assets/v3/home.jpg" alt="" style="width: 30%; max-width: 180px; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px 24px 0 0; transform: translateY(24px)">
-<img src="assets/v3/detalhe-topo.jpg" alt="" style="width: 34%; max-width: 210px; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 26px 26px 0 0">
-<img src="assets/v3/confirmada.jpg" alt="" style="width: 30%; max-width: 180px; aspect-ratio: 248 / 540; object-fit: cover; object-position: top; border-radius: 24px 24px 0 0; transform: translateY(24px)">
 </div>
 </a>
-
-<a href="ecommerce.html" aria-label="Abrir estudo de caso do e-commerce de acessórios" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0; text-decoration: none; color: #111111; background: #FF5A36; border: 2px solid #111111; border-radius: 28px; overflow: hidden; box-shadow: 6px 6px 0 #111111">
-<div style="padding: 48px 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px">
-<div style="display: flex; flex-direction: column; gap: 20px">
-<div style="display: flex; flex-wrap: wrap; gap: 8px; font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 500">
-<span style="padding: 6px 12px; border-radius: 999px; border: 1.5px solid #111111">02</span>
-<span style="padding: 6px 12px; border-radius: 999px; border: 1.5px solid #111111">E-commerce</span>
-<span style="padding: 6px 12px; border-radius: 999px; border: 1.5px solid #111111">GA4 + Clarity</span>
-<span style="padding: 6px 12px; border-radius: 999px; border: 1.5px solid #111111">Handoff</span>
-<span style="padding: 6px 12px; border-radius: 999px; border: 1.5px solid #111111">2026</span>
+<a href="ecommerce.html" class="pc pc-ecom" aria-label="Abrir estudo de caso do e-commerce de acessórios">
+<div class="pc-vis">
+<img src="assets/ecommerce/adicionado.png" alt="">
+<img src="assets/ecommerce/hero-senha.png" alt="">
 </div>
-<h3 style="margin: 0; font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -0.04em; line-height: 0.98">Onde um e‑commerce perdia vendas no celular</h3>
-<p style="margin: 0; font-size: 20px; line-height: 1.45; max-width: 460px">Projeto freelance real para uma loja de acessórios. Cruzei GA4, Clarity, teste de uso e heurísticas, achei dois bloqueios na compra e entreguei um handoff para cada um.</p>
+<div class="pc-body">
+<div class="pc-tags"><span>02</span><span>Projeto real</span><span>E-commerce</span><span>GA4 + Clarity</span><span>Handoff</span></div>
+<h3>Onde um e&#8209;commerce perdia vendas no celular</h3>
+<p>Cruzei GA4, Clarity, teste de uso e heurísticas, achei dois bloqueios na compra e entreguei um handoff para cada um.</p>
+<div class="pc-foot">
+<div class="pc-stat"><b>2,2×</b><span>mais conversão em quem passa pelo login</span></div>
+<span class="pc-btn">Ler o case <span aria-hidden="true">→</span></span>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end; justify-content: space-between">
-<div style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 56px; font-weight: 700; letter-spacing: -0.04em; line-height: 1">2,2×</span><span style="font-size: 14px; max-width: 220px">mais conversão em quem passa pelo login</span></div>
-<span style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 999px; background: #FFD23F; border: 2px solid #111111; color: #111111; font-weight: 600">Ler o case <span aria-hidden="true">→</span></span>
-</div>
-</div>
-<div style="background: #DCE4FF; border-left: 2px solid #111111; padding: 40px 24px 0; display: flex; gap: 16px; justify-content: center; align-items: flex-end; min-height: 460px">
-<img src="assets/ecommerce/adicionado.png" alt="" style="width: 44%; max-width: 250px; aspect-ratio: 430 / 860; object-fit: cover; object-position: top; border: 2px solid #111111; border-bottom: 0; border-radius: 24px 24px 0 0">
-<img src="assets/ecommerce/hero-senha.png" alt="" style="width: 44%; max-width: 250px; aspect-ratio: 430 / 860; object-fit: cover; object-position: top; border: 2px solid #111111; border-bottom: 0; border-radius: 24px 24px 0 0; transform: translateY(24px)">
 </div>
 </a>
+</div>
 </section>
 
 <section id="sobre" style="max-width: 1200px; margin: 0 auto; padding: 140px 32px 0; display: flex; flex-direction: column; gap: 48px">
